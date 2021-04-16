@@ -1,0 +1,16 @@
+.SearchBar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  min-width: 40%;
+  border-radius: 15px;
+
+  &__input {
+    border: none;
+    outline: none;
+    height: 100%;
+    width: 80%;
+    margin: 1rem;
+  }
+}
