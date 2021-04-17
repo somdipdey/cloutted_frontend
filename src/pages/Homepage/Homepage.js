@@ -40,8 +40,8 @@ const TrendingHashtags = [
 ];
 
 const Tile = ({ name }) => (
-  <div className="communities__tile">
-    <InsertPhotoRoundedIcon /> {"  "} {name}
+  <div className="card__tile">
+    <InsertPhotoRoundedIcon /> {"  "} <a href="/">{name}</a>
   </div>
 );
 
