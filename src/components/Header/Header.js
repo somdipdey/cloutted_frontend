@@ -9,7 +9,7 @@ function Header() {
     <div className="Header">
       <div className="Header__logo">🤖 Cloutted </div>
       <SearchBar />
-      <div className="Header__action">Get Early access</div>
+      <div className="Header__action">Get Early Access</div>
       <ProfileDropdown />
     </div>
   );
