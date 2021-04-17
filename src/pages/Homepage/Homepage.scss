@@ -17,3 +17,20 @@
     flex-direction: column;
   }
 }
+
+// shame css
+
+.card__tile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    padding: 0.5rem;
+
+    &:hover {
+      font-weight: 600;
+    }
+  }
+}

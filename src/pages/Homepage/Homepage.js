@@ -4,6 +4,7 @@ import "./Homepage.scss";
 
 import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
+import CreatePost from "../../components/CreatePost/CreatePost";
 
 const Communities = [
   "Music Industry",
@@ -12,7 +13,7 @@ const Communities = [
   "NBA Lovers",
   "#BitCloutBoys",
   "#CreatorIncentives",
-  "NFT Community"
+  "NFT Community",
 ];
 
 const MyLists = [
@@ -20,7 +21,7 @@ const MyLists = [
   "My Investments",
   "My Friends on Bitclout",
   "My Family on Bitclout",
-  "BitClout Boys"
+  "BitClout Boys",
 ];
 
 const TopCommunities = [
@@ -28,7 +29,7 @@ const TopCommunities = [
   "Music",
   "Bitcoin",
   "Animal Lovers",
-  "Dating"
+  "Dating",
 ];
 
 const TrendingHashtags = [
@@ -36,7 +37,7 @@ const TrendingHashtags = [
   "#Music",
   "#Cloutted",
   "#BitcloutMadeMeDoIt",
-  "#SomdipDeyFanClub"
+  "#SomdipDeyFanClub",
 ];
 
 const Tile = ({ name }) => (
@@ -79,38 +80,6 @@ const AddMyListsButton = () => (
   </div>
 );
 
-const TopCommunitiesTextBox = () => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "spaceEvenly",
-      backgroundColor: "#ffffff",
-      borderRadius: "15px",
-      padding: "1rem",
-      marginBottom: "1rem",
-      color: "#A3A3A3",
-    }}
-  >
-    Top Communities
-  </div>
-);
-
-const TrendingHashtagsTextBox = () => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "spaceEvenly",
-      backgroundColor: "#ffffff",
-      borderRadius: "15px",
-      padding: "1rem",
-      marginBottom: "1rem",
-      color: "#A3A3A3",
-    }}
-  >
-    Trending Hashtags
-  </div>
-);
-
 const CommunitiesCardBody = () => (
   <div className="communities">
     <AddCommunityButton />
@@ -131,7 +100,6 @@ const MyListsCardBody = () => (
 
 const TopCommunitiesCardBody = () => (
   <div className="topcommunities">
-    <TopCommunitiesTextBox />
     {TopCommunities.map((name) => (
       <Tile name={name} />
     ))}
@@ -140,7 +108,6 @@ const TopCommunitiesCardBody = () => (
 
 const TrendingHashtagsCardBody = () => (
   <div className="trendinghashtags">
-    <TrendingHashtagsTextBox />
     {TrendingHashtags.map((name) => (
       <Tile name={name} />
     ))}
@@ -155,11 +122,13 @@ function Homepage() {
         <Card headerText="" body={MyListsCardBody} />
       </div>
 
-      <div className="Homepage__middleArea"></div>
+      <div className="Homepage__middleArea">
+        <CreatePost />
+      </div>
 
       <div className="Homepage__rightSidebar">
-      <Card headerText="" body={TopCommunitiesCardBody} />
-      <Card headerText="" body={TrendingHashtagsCardBody} />
+        <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
+        <Card headerText="Trending Hastags" body={TrendingHashtagsCardBody} />
       </div>
     </div>
   );
