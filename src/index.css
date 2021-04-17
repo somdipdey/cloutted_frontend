@@ -15,3 +15,8 @@ code {
   padding: 0;
   margin: 0;
 }
+
+body {
+  max-width: 99vw;
+  overflow-x: hidden;
+}

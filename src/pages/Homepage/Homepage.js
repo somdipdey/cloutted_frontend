@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../../components/Card/Card";
 import "./Homepage.scss";
+import gman1 from "../../assets/stub/gman1.jpg";
+import gman2 from "../../assets/stub/gman2.jpg";
 
-import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import CreatePost from "../../components/CreatePost/CreatePost";
+import Tabs from "./sub-components/Tabs/Tabs";
+import TabView from "./sub-components/TabView/TabView";
 
 const Communities = [
   "Music Industry",
@@ -40,9 +43,12 @@ const TrendingHashtags = [
   "#SomdipDeyFanClub",
 ];
 
+const genImg = () => (Math.random() * 10 > 4 ? gman1 : gman2);
+
 const Tile = ({ name }) => (
   <div className="card__tile">
-    <InsertPhotoRoundedIcon /> {"  "} <a href="/">{name}</a>
+    <img className="card__tileAvatar" alt="" src={genImg()} /> {"  "}{" "}
+    <a href="/">{name}</a>
   </div>
 );
 
@@ -115,6 +121,10 @@ const TrendingHashtagsCardBody = () => (
 );
 
 function Homepage() {
+  const [tabNo, setTabNo] = useState(0);
+
+  const setTab = (idx) => setTabNo(idx);
+
   return (
     <div className="Homepage">
       <div className="Homepage__leftSidebar">
@@ -124,6 +134,8 @@ function Homepage() {
 
       <div className="Homepage__middleArea">
         <CreatePost />
+        <Tabs tabNo={tabNo} setTab={setTab} />
+        <TabView tab={tabNo} />
       </div>
 
       <div className="Homepage__rightSidebar">

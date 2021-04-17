@@ -24,6 +24,8 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  height: 50px;
+  font-size: 0.9rem;
 
   a {
     text-decoration: none;
@@ -33,4 +35,11 @@
       font-weight: 600;
     }
   }
+}
+
+.card__tileAvatar {
+  --length: 35px;
+  height: var(--length);
+  width: var(--length);
+  border-radius: 5px;
 }
