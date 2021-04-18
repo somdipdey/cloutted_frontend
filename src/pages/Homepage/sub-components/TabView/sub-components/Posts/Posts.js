@@ -9,6 +9,7 @@ import BookmarkOutlinedIcon from "@material-ui/icons/BookmarkOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
+import ReactTooltip from "react-tooltip";
 
 const Liker = ({ likes, isLiked }) => (
   <div className="Posts__postLikeWrap">
@@ -28,8 +29,11 @@ const UserInfoRow = ({ user, postCategory }) => (
       <div className="Posts__userName">
         <p>{user.name}</p>
         {user.isVerified ? (
+          <span data-id="verified-tip" data-tip="This account is verified">
           <CheckCircleRoundedIcon style={{ color: "blue" }} />
+          </span>
         ) : null}
+        <ReactTooltip data-id="verified-tip" effect="float"/>
       </div>
       <div className="Posts__userValue">
         {`~$${user.value}`}

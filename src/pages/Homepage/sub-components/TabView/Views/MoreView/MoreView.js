@@ -12,7 +12,7 @@ const posts = [
       name: "cloutted",
       isVerified: true,
       value: 33_775.1,
-      avatar: "/gman1.jpg",
+      avatar: "/favicon.png",
     },
     post: {
       body:

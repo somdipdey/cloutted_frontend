@@ -2,6 +2,7 @@ import React from "react";
 import "./CreatePost.scss";
 import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
 import Button from "../Button/Button";
+import ReactTooltip from "react-tooltip";
 
 function CreatePost() {
   return (
@@ -12,7 +13,10 @@ function CreatePost() {
       <div className="CreatePost__input">
         What you wanna share with the community...
       </div>
+      <span data-id="create-post-tip" data-tip="Clout to share your thoughts with the community">
       <Button buttonText="Create Post" />
+      </span>
+      <ReactTooltip data-id="create-post-tip" effect="float"/>
     </div>
   );
 }

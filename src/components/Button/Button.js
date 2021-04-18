@@ -9,7 +9,7 @@ function Button({ buttonText, onClick, buttonLink = "", spaceTop }) {
       onClick={() => onClick?.()}
     >
       {buttonLink ? (
-        <a href={buttonLink}>{buttonText || "Click Me"} </a>
+        <a href={buttonLink} target="_blank">{buttonText || "Click Me"} </a>
       ) : (
         buttonText || "Click Me"
       )}
