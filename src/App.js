@@ -4,6 +4,7 @@ import Homepage from "./pages/Homepage/Homepage";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profile from "./pages/Profile/Profile";
+import Screenshots from "./pages/Screenshots/Screenshots";
 
 function App() {
   return (
@@ -14,8 +15,8 @@ function App() {
           <Route exact path="/">
             <Homepage />
           </Route>
-          <Route exact path="/profile">
-            <Profile />
+          <Route exact path="/community">
+            <Screenshots imgSrc={"/demoImg.jpg"} />
           </Route>
         </Switch>
       </div>

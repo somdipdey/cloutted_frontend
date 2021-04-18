@@ -9,47 +9,80 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 import Tabs from "./sub-components/Tabs/Tabs";
 import TabView from "./sub-components/TabView/TabView";
 import Button from "../../components/Button/Button";
+import { useHistory } from "react-router";
+
+let history;
 
 const Communities = [
-  "Music Industry",
-  "Bitcoin Enthusiasts",
-  "#BitCloutClubHouse",
-  "NBA Lovers",
-  "#BitCloutBoys",
-  "#CreatorIncentives",
-  "NFT Community",
+  {
+    title: "Music Industry",
+    onclickFunction: () => history?.push("/community"),
+  },
+  {
+    title: "Bitcoin Enthusiasts",
+    onclickFunction: () => history?.push("/community"),
+  },
+  {
+    title: "#BitCloutClubHouse",
+    onclickFunction: () => history?.push("/hastags"),
+  },
+  { title: "NBA Lovers", onclickFunction: () => history?.push("/community") },
+  { title: "#BitCloutBoys", onclickFunction: () => history?.push("/hastags") },
+  {
+    title: "#CreatorIncentives",
+    onclickFunction: () => history?.push("/hastags"),
+  },
+  {
+    title: "NFT Community",
+    onclickFunction: () => history?.push("/community"),
+  },
 ];
 
 const MyLists = [
-  "My Coin Holders",
-  "My Investments",
-  "My Friends on Bitclout",
-  "My Family on Bitclout",
-  "BitClout Boys",
+  { title: "My Coin Holders", onclickFunction: () => alert("not implemented") },
+  { title: "My Investments", onclickFunction: () => alert("not implemented") },
+  {
+    title: "My Friends on Bitclout",
+    onclickFunction: () => alert("not implemented"),
+  },
+  {
+    title: "My Family on Bitclout",
+    onclickFunction: () => alert("not implemented"),
+  },
+  { title: "BitClout Boys", onclickFunction: () => alert("not implemented") },
 ];
 
 const TopCommunities = [
-  "Artificial Intelligence",
-  "Music",
-  "Bitcoin",
-  "Animal Lovers",
-  "Dating",
+  {
+    title: "Artificial Intelligence",
+    onclickFunction: () => alert("Not implemented"),
+  },
+  { title: "Music", onclickFunction: () => alert("Not implemented") },
+  { title: "Bitcoin", onclickFunction: () => alert("Not implemented") },
+  { title: "Animal Lovers", onclickFunction: () => alert("Not implemented") },
+  { title: "Dating", onclickFunction: () => alert("Not implemented") },
 ];
 
 const TrendingHashtags = [
-  "#Bitcloutboys",
-  "#Music",
-  "#Cloutted",
-  "#BitcloutMadeMeDoIt",
-  "#SomdipDeyFanClub",
+  { title: "#Bitcloutboys", onclickFunction: () => alert("Not implemented") },
+  { title: "#Music", onclickFunction: () => alert("Not implemented") },
+  { title: "#Cloutted", onclickFunction: () => alert("Not implemented") },
+  {
+    title: "#BitcloutMadeMeDoIt",
+    onclickFunction: () => alert("Not implemented"),
+  },
+  {
+    title: "#SomdipDeyFanClub",
+    onclickFunction: () => alert("Not implemented"),
+  },
 ];
 
 const genImg = () => (Math.random() * 10 > 4 ? gman1 : gman2);
 
-const Tile = ({ name }) => (
-  <div className="card__tile">
+const Tile = ({ title, onclickFunction }) => (
+  <div className="card__tile" onClick={() => onclickFunction?.()}>
     <img className="card__tileAvatar" alt="" src={genImg()} /> {"  "}{" "}
-    <a href="/">{name}</a>
+    <a>{title}</a>
   </div>
 );
 
@@ -90,8 +123,8 @@ const AddMyListsButton = () => (
 const CommunitiesCardBody = () => (
   <div className="communities">
     <AddCommunityButton />
-    {Communities.map((name) => (
-      <Tile name={name} />
+    {Communities.map(({ title, onclickFunction }) => (
+      <Tile title={title} onclickFunction={onclickFunction} />
     ))}
 
     <Button buttonText="View All" spaceTop />
@@ -101,8 +134,8 @@ const CommunitiesCardBody = () => (
 const MyListsCardBody = () => (
   <div className="mylists">
     <AddMyListsButton />
-    {MyLists.map((name) => (
-      <Tile name={name} />
+    {MyLists.map(({ title, onclickFunction }) => (
+      <Tile title={title} onclickFunction={onclickFunction} />
     ))}
 
     <Button buttonText="View All" spaceTop />
@@ -111,8 +144,8 @@ const MyListsCardBody = () => (
 
 const TopCommunitiesCardBody = () => (
   <div className="topcommunities">
-    {TopCommunities.map((name) => (
-      <Tile name={name} />
+    {TopCommunities.map(({ title, onclickFunction }) => (
+      <Tile title={title} onclickFunction={onclickFunction} />
     ))}
     <Button buttonText="View All" spaceTop />
   </div>
@@ -120,8 +153,8 @@ const TopCommunitiesCardBody = () => (
 
 const TrendingHashtagsCardBody = () => (
   <div className="trendinghashtags">
-    {TrendingHashtags.map((name) => (
-      <Tile name={name} />
+    {TrendingHashtags.map(({ title, onclickFunction }) => (
+      <Tile title={title} onclickFunction={onclickFunction} />
     ))}
     <Button buttonText="View All" spaceTop />
   </div>
@@ -129,6 +162,8 @@ const TrendingHashtagsCardBody = () => (
 
 function Homepage() {
   const [tabNo, setTabNo] = useState(0);
+
+  history = useHistory();
 
   const setTab = (idx) => setTabNo(idx);
 

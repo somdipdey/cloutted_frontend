@@ -5,7 +5,9 @@
   width: 100vw;
   background-color: #f8f8f8;
   padding: 1rem;
-
+  position: sticky;
+  cursor: pointer;
+  top: 0;
   &__action {
     border-radius: 50px;
     padding: 1rem;
