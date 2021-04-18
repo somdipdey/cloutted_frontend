@@ -2,11 +2,11 @@ import React from "react";
 
 import "./Button.scss";
 
-function Button({ buttonText, onClickFunction, spaceTop }) {
+function Button({ buttonText, onClick, spaceTop }) {
   return (
     <div
       className={`Button${spaceTop ? ` Button--withMarginTop` : ""}`}
-      onClick={() => onClickFunction?.()}
+      onClick={() => onClick?.()}
     >
       {buttonText || "Click Me"}
     </div>
