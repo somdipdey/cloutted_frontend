@@ -8,6 +8,7 @@ import BookmarkBorderOutlinedIcon from "@material-ui/icons/BookmarkBorderOutline
 import BookmarkOutlinedIcon from "@material-ui/icons/BookmarkOutlined";
 import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
+import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 
 const Liker = ({ likes, isLiked }) => (
   <div className="Posts__postLikeWrap">
@@ -24,7 +25,12 @@ const UserInfoRow = ({ user, postCategory }) => (
       <div className="Posts__userAvatar">
         <img src={user.avatar} alt="" />
       </div>
-      <div className="Posts__userName">{user.name}</div>
+      <div className="Posts__userName">
+        <p>{user.name}</p>
+        {user.isVerified ? (
+          <CheckCircleRoundedIcon style={{ color: "blue" }} />
+        ) : null}
+      </div>
       <div className="Posts__userValue">
         {`~$${user.value}`}
         <a href="">Buy</a>

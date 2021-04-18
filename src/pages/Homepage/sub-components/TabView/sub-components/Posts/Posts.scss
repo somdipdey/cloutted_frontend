@@ -61,6 +61,11 @@
   &__userName {
     font-size: 1.2rem;
     font-weight: 500;
+    display: flex;
+
+    & > p {
+      margin-right: 0.5rem;
+    }
   }
 
   &__userValue {
