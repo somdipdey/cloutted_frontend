@@ -11,7 +11,7 @@ function ProfileDropdown() {
         <span data-id="prof-tip" data-tip="Your Profile">
           johndoe
         </span>
-        <ReactTooltip id="prof-tip" />
+        <ReactTooltip data-id="prof-tip" effect="float"/>
       </div>
 
       <ExpandMoreRoundedIcon />

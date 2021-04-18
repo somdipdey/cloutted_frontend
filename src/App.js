@@ -22,6 +22,9 @@ function App() {
           <Route exact path="/community">
             <Screenshots imgSrc={"/demoImg.jpg"} />
           </Route>
+          <Route exact path="/hastags">
+            <Screenshots imgSrc={"/demoImg.jpg"} />
+          </Route>
         </Switch>
       </div>
     </Router>

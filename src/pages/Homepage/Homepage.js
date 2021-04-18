@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Card from "../../components/Card/Card";
 import "./Homepage.scss";
-import gman1 from "../../assets/stub/gman1.jpg";
-import gman2 from "../../assets/stub/gman2.jpg";
+//import somdipdey from "../../assets/stub/somdipdey.jpg";
+//import jakeudell from "../../assets/stub/jakeudell.jpg";
+import clouttedlogo from "../../assets/stub/favicon.png";
 
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import CreatePost from "../../components/CreatePost/CreatePost";
@@ -77,7 +78,7 @@ const TrendingHashtags = [
   },
 ];
 
-const genImg = () => (Math.random() * 10 > 4 ? gman1 : gman2);
+const genImg = () => (Math.random() * 10 > 4 ? clouttedlogo : clouttedlogo);
 
 const Tile = ({ title, onclickFunction }) => (
   <div className="card__tile" onClick={() => onclickFunction?.()}>

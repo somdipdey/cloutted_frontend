@@ -1,6 +1,9 @@
 import React from "react";
 import "./MoreView.scss";
 import Posts from "../../sub-components/Posts/Posts";
+import Button from "../../../../../../components/Button/Button";
+
+let history;
 
 const posts = [
   {
@@ -28,6 +31,9 @@ function MoreView() {
   return (
     <div className="MoreView">
       <Posts posts={posts} />
+      <Button buttonText="Buy" 
+      buttonLink="https://bitclout.com/u/cloutted"
+      spaceTop />
     </div>
   );
 }
