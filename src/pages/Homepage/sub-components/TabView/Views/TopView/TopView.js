@@ -8,8 +8,8 @@ const posts = [
     owner: {
       name: "cloutted",
       isVerified: true,
-      value: 33_775.1,
-      avatar: "/gman1.jpg",
+      value: 3_775.1,
+      avatar: "/favicon.png",
     },
     post: {
       body:
@@ -28,7 +28,7 @@ const posts = [
       name: "somdipdey",
       isVerified: true,
       value: 3_443.3,
-      avatar: "/gman1.jpg",
+      avatar: "/somdipdey.jpg",
     },
     post: {
       body:

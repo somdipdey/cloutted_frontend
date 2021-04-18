@@ -10,6 +10,9 @@ import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReactTooltip from "react-tooltip";
+import { useHistory } from "react-router";
+
+let history;
 
 const Liker = ({ likes, isLiked }) => (
   <div className="Posts__postLikeWrap">
@@ -40,7 +43,7 @@ const UserInfoRow = ({ user, postCategory }) => (
         <a href="">Buy</a>
       </div>
     </div>
-    <div className="Posts__userPostCategory">{postCategory}</div>
+    <div className="Posts__userPostCategory" onClick = {()=> history?.push("/community")}>{postCategory}</div>
   </div>
 );
 
@@ -84,6 +87,7 @@ const Post = ({ post }) => (
 );
 
 function Posts({ posts }) {
+  history = useHistory();
   return (
     <div className="Posts">
       {posts.map((post) => (

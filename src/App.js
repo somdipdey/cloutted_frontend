@@ -20,10 +20,13 @@ function App() {
             <TypeForm />
           </Route>
           <Route exact path="/community">
-            <Screenshots imgSrc={"/demoImg.jpg"} />
+            <Screenshots imgSrc={"/ClouttedCommunities.JPG"} />
           </Route>
           <Route exact path="/hastags">
-            <Screenshots imgSrc={"/demoImg.jpg"} />
+            <Screenshots imgSrc={"/hashtags.JPG"} />
+          </Route>
+          <Route exact path="/mylists">
+            <Screenshots imgSrc={"/MyLists.JPG"} />
           </Route>
         </Switch>
       </div>

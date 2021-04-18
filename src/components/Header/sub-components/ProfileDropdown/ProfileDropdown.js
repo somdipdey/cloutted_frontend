@@ -8,7 +8,7 @@ function ProfileDropdown() {
   return (
     <div className="ProfileDropdown">
       <div className="ProfileDropdown__name">
-        <span data-id="prof-tip" data-tip="Your Profile">
+        <span data-id="prof-tip" data-tip="Access to your profile will be available soon.">
           johndoe
         </span>
         <ReactTooltip data-id="prof-tip" effect="float"/>
