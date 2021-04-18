@@ -1,5 +1,5 @@
 import React from "react";
-import "./NewView.scss";
+import "./TopView.scss";
 import Posts from "../../sub-components/Posts/Posts";
 
 const posts = [
@@ -13,9 +13,9 @@ const posts = [
     },
     post: {
       body:
-        "Discover latest posts from your Community so that you can stay updated at all times. Because #Community matters. 💪🙏🙌🏼",
-      likes: 143,
-      reClouts: 4,
+        "Get the most liked and commented clouts (posts) directly from your community. Because we want to reach out to the influencers from our #Community 🙌🏼🙌🏼🙌🏼",
+      likes: 999,
+      reClouts: 2,
       comments: 12,
       isLiked: true,
       postCategory: "Cloutted CoreTeam",
@@ -32,22 +32,22 @@ const posts = [
     },
     post: {
       body:
-        "If U think this is dope. Just wait for what's in store for U! #ClouttedDev #Cloutted ",
-      likes: 18,
-      reClouts: 3,
-      comments: 4,
+        "We wiil be adding more features as we go along, So, buckle up for the ride! 🤩🤩🤩 #ClouttedDev #Cloutted ",
+      likes: 15,
+      reClouts: 2,
+      comments: 9,
       isLiked: true,
-      postCategory: "Cloutted Devs",
+      postCategory: "Artificial Intelligence",
     },
   },
 ];
 
-function NewView() {
+function TopView() {
   return (
-    <div className="NewView">
+    <div className="TopView">
       <Posts posts={posts} />
     </div>
   );
 }
 
-export default NewView;
+export default TopView;

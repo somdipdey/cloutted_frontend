@@ -11,7 +11,7 @@ const Tab = ({ name, setTab, idx, isActive }) => (
   </div>
 );
 
-const tabList = [{ title: "Hot" }, { title: "New" }, { title: "Top" }];
+const tabList = [{ title: "Hot" }, { title: "New Discoveries" }, { title: "Top" }, { title: "Cloutted Communities" }];
 
 function Tabs({ tabNo, setTab }) {
   return (
