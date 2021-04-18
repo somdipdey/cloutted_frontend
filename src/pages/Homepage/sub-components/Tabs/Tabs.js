@@ -11,7 +11,12 @@ const Tab = ({ name, setTab, idx, isActive }) => (
   </div>
 );
 
-const tabList = [{ title: "Hot" }, { title: "New Discoveries" }, { title: "Top" }, { title: "Cloutted Communities" }];
+const tabList = [
+  { title: "Hot" },
+  { title: "New Discoveries" },
+  { title: "Top" },
+  { title: "Cloutted Communities" },
+];
 
 function Tabs({ tabNo, setTab }) {
   return (
@@ -19,7 +24,7 @@ function Tabs({ tabNo, setTab }) {
       {tabList.map(({ title }, idx) => (
         <Tab name={title} isActive={tabNo === idx} setTab={setTab} idx={idx} />
       ))}
-      <div className="Tabs__more" onClick={() => setTab(3)}>
+      <div className="Tabs__more" onClick={() => setTab(4)}>
         <MoreVertRoundedIcon color={tabNo == 3 ? `#ddd` : `#333`} />
       </div>
     </div>
