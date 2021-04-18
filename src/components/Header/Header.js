@@ -14,7 +14,9 @@ function Header() {
         <img className="Header__logoImg" alt="" src={logo} />
       </div>
       <SearchBar />
-      <div className="Header__action">Get Early Access</div>
+      <div className="Header__action" onClick={() => history.push("get-early")}>
+        Get Early Access
+      </div>
       <ProfileDropdown />
     </div>
   );
