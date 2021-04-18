@@ -127,7 +127,11 @@ const CommunitiesCardBody = () => (
       <Tile title={title} onclickFunction={onclickFunction} />
     ))}
 
-    <Button buttonText="View All" spaceTop />
+    <Button
+      buttonText="View All"
+      onClick={() => history?.push("/community")}
+      spaceTop
+    />
   </div>
 );
 
