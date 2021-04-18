@@ -9,7 +9,7 @@ const posts = [
       name: "cloutted",
       isVerified: true,
       value: 33_775.1,
-      avatar: "/gman1.jpg",
+      avatar: "/favicon.png",
     },
     post: {
       body:
@@ -28,7 +28,7 @@ const posts = [
       name: "jakeudell",
       isVerified: true,
       value: 21_775.1,
-      avatar: "/gman1.jpg",
+      avatar: "/jakeudell.jpg",
     },
     post: {
       body:
