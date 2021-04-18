@@ -8,6 +8,7 @@ import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import CreatePost from "../../components/CreatePost/CreatePost";
 import Tabs from "./sub-components/Tabs/Tabs";
 import TabView from "./sub-components/TabView/TabView";
+import Button from "../../components/Button/Button";
 
 const Communities = [
   "Music Industry",
@@ -92,6 +93,8 @@ const CommunitiesCardBody = () => (
     {Communities.map((name) => (
       <Tile name={name} />
     ))}
+
+    <Button buttonText="View All" spaceTop />
   </div>
 );
 
@@ -101,6 +104,8 @@ const MyListsCardBody = () => (
     {MyLists.map((name) => (
       <Tile name={name} />
     ))}
+
+    <Button buttonText="View All" spaceTop />
   </div>
 );
 
@@ -109,6 +114,7 @@ const TopCommunitiesCardBody = () => (
     {TopCommunities.map((name) => (
       <Tile name={name} />
     ))}
+    <Button buttonText="View All" spaceTop />
   </div>
 );
 
@@ -117,6 +123,7 @@ const TrendingHashtagsCardBody = () => (
     {TrendingHashtags.map((name) => (
       <Tile name={name} />
     ))}
+    <Button buttonText="View All" spaceTop />
   </div>
 );
 
@@ -128,8 +135,8 @@ function Homepage() {
   return (
     <div className="Homepage">
       <div className="Homepage__leftSidebar">
-        <Card headerText="" body={CommunitiesCardBody} />
-        <Card headerText="" body={MyListsCardBody} />
+        <Card body={CommunitiesCardBody} />
+        <Card body={MyListsCardBody} />
       </div>
 
       <div className="Homepage__middleArea">

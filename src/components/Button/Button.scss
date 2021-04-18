@@ -1,0 +1,11 @@
+.Button {
+  background-color: #98f0d8;
+  border-radius: 15px;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  margin: 0.5rem;
+
+  &--withMarginTop {
+    margin-top: 2rem;
+  }
+}

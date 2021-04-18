@@ -1,6 +1,7 @@
 import React from "react";
 import "./CreatePost.scss";
 import InsertPhotoRoundedIcon from "@material-ui/icons/InsertPhotoRounded";
+import Button from "../Button/Button";
 
 function CreatePost() {
   return (
@@ -11,7 +12,7 @@ function CreatePost() {
       <div className="CreatePost__input">
         What you wanna share with the community...
       </div>
-      <div className="CreatePost__button">Create Post</div>
+      <Button buttonText="Create Post" />
     </div>
   );
 }
