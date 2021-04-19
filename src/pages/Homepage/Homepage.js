@@ -11,6 +11,7 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 import Tabs from "./sub-components/Tabs/Tabs";
 import TabView from "./sub-components/TabView/TabView";
 import Button from "../../components/Button/Button";
+import ReactTooltip from "react-tooltip";
 import { useHistory } from "react-router";
 
 let history;
@@ -62,7 +63,7 @@ const MyLists = [
 const TopCommunities = [
   {
     title: "BitClout Meetups",
-    onclickFunction: () => alert("Not implemented"),
+    onclickFunction: () => history?.push("/community")
   },
   { title: "Animal Lovers", onclickFunction: () => history?.push("/community") },
   { title: "Music Industry", onclickFunction: () => history?.push("/community") },
@@ -87,10 +88,19 @@ const TrendingHashtags = [
 const genImg = () => (Math.random() * 10 > 4 ? clouttedlogo : clouttedlogo);
 
 const Tile = ({ title, onclickFunction }) => (
-  <div className="card__tile" onClick={() => onclickFunction?.()}>
+  {title} === "My Family" ?
+  (
+    <div className="card__tile" onClick={() => onclickFunction?.()}>
+      <img className="card__tileAvatar" alt="" src={genImg()} /> {"  "}{" "}
+      <a>{title} <LockIcon /></a>
+    </div>
+  ) :
+  (
+    <div className="card__tile" onClick={() => onclickFunction?.()}>
     <img className="card__tileAvatar" alt="" src={genImg()} /> {"  "}{" "}
     <a>{title}</a>
-  </div>
+    </div>
+  )
 );
 
 const AddCommunityButton = () => (
@@ -105,7 +115,10 @@ const AddCommunityButton = () => (
       color: "#A3A3A3",
     }}
   >
+    <span data-id="add-community-tip" data-tip="Add community or hashtag to conveniently follow.">
     <AddRoundedIcon />
+    </span>
+    <ReactTooltip data-id="add-community-tip" effect="float"/>
     Add Community or Hashtag
   </div>
 );
@@ -122,7 +135,10 @@ const AddMyListsButton = () => (
       color: "#A3A3A3",
     }}
   >
+    <span data-id="add-mylists-tip" data-tip="Curate your own feed, customize who you see, and share your lists!">
     <AddRoundedIcon />
+    </span>
+    <ReactTooltip data-id="add-mylists-tip" effect="float"/>
     Create List
   </div>
 );
@@ -193,7 +209,7 @@ function Homepage() {
 
       <div className="Homepage__rightSidebar">
         <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
-        <Card headerText="Trending Hastags" body={TrendingHashtagsCardBody} />
+        <Card headerText="Trending Hashtags" body={TrendingHashtagsCardBody} />
       </div>
     </div>
   );

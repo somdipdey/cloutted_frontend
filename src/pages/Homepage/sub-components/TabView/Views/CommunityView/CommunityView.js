@@ -6,24 +6,45 @@ const posts = [
   {
     id: 1,
     owner: {
-      name: "cloutted",
+      name: "bitclout500",
       isVerified: true,
       value: 3_775.1,
-      avatar: "/favicon.png",
+      avatar: "/bitclout500.jpg",
     },
     post: {
       body:
-        "Get the most liked and commented clouts (posts) directly from your community. Because we want to reach out to the influencers from our #Community 🙌🏼🙌🏼🙌🏼",
-      likes: 999,
-      reClouts: 2,
-      comments: 12,
+        "Those who join communities will see the native Cloutted feed here. All the most recent posts from all the communities you joined will be shown. 🙌🏼🙌🏼🙌🏼",
+      likes: 99,
+      reClouts: 3,
+      comments: 112,
       isLiked: true,
-      postCategory: "Cloutted CoreTeam",
+      postCategory: "BitClout Investments",
+      postTime: "39m",
     },
   },
 
   {
     id: 2,
+    owner: {
+      name: "cloutted",
+      isVerified: true,
+      value: 3_443.3,
+      avatar: "/favicon.png",
+    },
+    post: {
+      body:
+        "Cloutted Communities is your feed for all the communities you joined together. You can also click your community on the left panel to view that specific community thread as well. 🤩🤩🤩 ",
+      likes: 115,
+      reClouts: 21,
+      comments: 93,
+      isLiked: true,
+      postCategory: "Cloutted CoreTeam",
+      postTime: "3h",
+    },
+  },
+
+  {
+    id: 3,
     owner: {
       name: "somdipdey",
       isVerified: true,
@@ -32,12 +53,13 @@ const posts = [
     },
     post: {
       body:
-        "We wiil be adding more features as we go along, So, buckle up for the ride! 🤩🤩🤩 #ClouttedDev #Cloutted ",
-      likes: 15,
-      reClouts: 2,
-      comments: 9,
+        "Along with Public Communities, you can start private ones to socialize with your friends and family. This will allow you to share each other's posts while also having a private messaging platform among the group.",
+      likes: 153,
+      reClouts: 21,
+      comments: 93,
       isLiked: true,
-      postCategory: "Artificial Intelligence",
+      postCategory: "Cloutted CoreTeam",
+      postTime: "3h",
     },
   },
 ];

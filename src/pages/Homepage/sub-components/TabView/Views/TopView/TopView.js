@@ -6,19 +6,20 @@ const posts = [
   {
     id: 1,
     owner: {
-      name: "cloutted",
-      isVerified: true,
+      name: "topshotguru",
+      isVerified: false,
       value: 3_775.1,
-      avatar: "/favicon.png",
+      avatar: "/gman1.jpg",
     },
     post: {
       body:
-        "Get the most liked and commented clouts (posts) directly from your community. Because we want to reach out to the influencers from our #Community 🙌🏼🙌🏼🙌🏼",
-      likes: 999,
-      reClouts: 2,
-      comments: 12,
+        "On the Top feed, users will be able to see the Top clouts from BitClout from each community for the last hour, day, and week. Here you will be able to see top trending posts for different communities and hashtags! 🙌🏼🙌🏼🙌🏼",
+      likes: 991,
+      reClouts: 465,
+      comments: 700,
       isLiked: true,
-      postCategory: "Cloutted CoreTeam",
+      postCategory: "Marketing Community",
+      postTime: "1d",
     },
   },
 
@@ -32,14 +33,36 @@ const posts = [
     },
     post: {
       body:
-        "We wiil be adding more features as we go along, So, buckle up for the ride! 🤩🤩🤩 #ClouttedDev #Cloutted ",
-      likes: 15,
-      reClouts: 2,
-      comments: 9,
+        "On the right side you will be able to view Top Communities from Cloutted & Trending Hashtags from BitClout. 🤩🤩🤩 ",
+      likes: 985,
+      reClouts: 122,
+      comments: 439,
       isLiked: true,
-      postCategory: "Artificial Intelligence",
+      postCategory: "Hot Topics",
+      postTime: "18h",
     },
   },
+
+  {
+    id: 3,
+    owner: {
+      name: "cloutted",
+      isVerified: true,
+      value: 3_775.1,
+      avatar: "/favicon.png",
+    },
+    post: {
+      body:
+        "You can search for a Community or Hashtag by using the Big Search bar on the top. If you can’t find a community page, you can apply to create a Public Community! ",
+      likes: 855,
+      reClouts: 243,
+      comments: 909,
+      isLiked: true,
+      postCategory: "Cloutted CoreTeam",
+      postTime: "19h",
+    },
+  },
+
 ];
 
 function TopView() {

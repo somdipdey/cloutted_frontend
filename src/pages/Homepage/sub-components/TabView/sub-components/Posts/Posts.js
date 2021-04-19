@@ -72,6 +72,9 @@ const PostsRow = ({ post }) => (
       <div className="PostsRow__actionsMore">
         <MoreVertOutlinedIcon />
       </div>
+      <div className="PostsRow__postTime">
+        {post?.postTime}
+      </div>
     </div>
   </div>
 );

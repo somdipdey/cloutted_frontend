@@ -3,10 +3,18 @@
   width: 100%;
 
   & > img {
-    height: 100%;
-    width: 100%;
+    display: block;
+    height: 90%;
+    width: 90%;
     object-fit: fill;
     outline: none;
-    border: none;
+    border: inset;
+    border-color: #98F0D8;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  & > h2 {
+    text-align: center;
   }
 }

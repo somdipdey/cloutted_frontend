@@ -13,36 +13,18 @@ const posts = [
     },
     post: {
       body:
-        "Discover Community. Curate Feeds. Find News Trends. Socialize With Freinds and family. 💪🙏🙌🏼 We Are #Cloutted",
+        "Discover Community. Curate Feeds. Find new Trends. Socialize with friends and family. We are are #Cloutted 💪🙏🙌🏼",
       likes: 344,
       reClouts: 404,
       comments: 12,
       isLiked: true,
       postCategory: "Cloutted CoreTeam",
+      postTime: "2h",
     },
   },
 
   {
     id: 2,
-    owner: {
-      name: "jakeudell",
-      isVerified: true,
-      value: 21_775.1,
-      avatar: "/jakeudell.jpg",
-    },
-    post: {
-      body:
-        "Who's investing in creators from the #music #industry right now? 💸💸🔥🔥🔥 ",
-      likes: 27,
-      reClouts: 12,
-      comments: 9,
-      isLiked: true,
-      postCategory: "Music Industry",
-    },
-  },
-
-  {
-    id: 3,
     owner: {
       name: "somdipdey",
       isVerified: true,
@@ -51,14 +33,36 @@ const posts = [
     },
     post: {
       body:
-        "Yo! Do u think Artificial Intelligence is gonna take over the society? #ArtificialIntelligence #AI ",
-      likes: 15,
-      reClouts: 9,
-      comments: 9,
+        "On the Hot feed, users will be able to see the hottest clouts from BitClout from the last hour, day, and week. The most engaged posts regardless of which communities will be shown here. 🔥🔥🔥",
+      likes: 115,
+      reClouts: 19,
+      comments: 34,
       isLiked: true,
-      postCategory: "Artificial Intelligence",
+      postCategory: "Cloutted CoreTeam",
+      postTime: "1h",
     },
   },
+
+  {
+    id: 3,
+    owner: {
+      name: "BitClout500",
+      isVerified: true,
+      value: 21_775.1,
+      avatar: "/bitclout500.jpg",
+    },
+    post: {
+      body:
+        "Users will be able to Follow Hashtags, Join Communities, and add Curated Lists, so their feed is always changing allowing for discovering for new friends and communities.",
+      likes: 217,
+      reClouts: 12,
+      comments: 91,
+      isLiked: true,
+      postCategory: "BitClout Clubhouse",
+      postTime: "3h",
+    },
+  },
+
 ];
 
 function HotView() {

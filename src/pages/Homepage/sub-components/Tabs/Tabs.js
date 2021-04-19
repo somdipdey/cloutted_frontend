@@ -25,7 +25,7 @@ function Tabs({ tabNo, setTab }) {
         <Tab name={title} isActive={tabNo === idx} setTab={setTab} idx={idx} />
       ))}
       <div className="Tabs__more" onClick={() => setTab(4)}>
-        <MoreVertRoundedIcon color={tabNo == 3 ? `#ddd` : `#333`} />
+        <MoreVertRoundedIcon color={tabNo === 3 ? `#ddd` : `#333`} />
       </div>
     </div>
   );
