@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/cloutted_frontend/static/css/main.78257fa6.chunk.css",
+    "main.js": "/cloutted_frontend/static/js/main.a00dab22.chunk.js",
+    "main.js.map": "/cloutted_frontend/static/js/main.a00dab22.chunk.js.map",
+    "runtime-main.js": "/cloutted_frontend/static/js/runtime-main.4fce4a10.js",
+    "runtime-main.js.map": "/cloutted_frontend/static/js/runtime-main.4fce4a10.js.map",
+    "static/js/2.9244e0f8.chunk.js": "/cloutted_frontend/static/js/2.9244e0f8.chunk.js",
+    "static/js/2.9244e0f8.chunk.js.map": "/cloutted_frontend/static/js/2.9244e0f8.chunk.js.map",
+    "static/js/3.c0581b84.chunk.js": "/cloutted_frontend/static/js/3.c0581b84.chunk.js",
+    "static/js/3.c0581b84.chunk.js.map": "/cloutted_frontend/static/js/3.c0581b84.chunk.js.map",
+    "index.html": "/cloutted_frontend/index.html",
+    "static/css/main.78257fa6.chunk.css.map": "/cloutted_frontend/static/css/main.78257fa6.chunk.css.map",
+    "static/js/2.9244e0f8.chunk.js.LICENSE.txt": "/cloutted_frontend/static/js/2.9244e0f8.chunk.js.LICENSE.txt",
+    "static/media/favicon.308c0605.png": "/cloutted_frontend/static/media/favicon.308c0605.png",
+    "static/media/logo.5e3480c7.png": "/cloutted_frontend/static/media/logo.5e3480c7.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4fce4a10.js",
+    "static/js/2.9244e0f8.chunk.js",
+    "static/css/main.78257fa6.chunk.css",
+    "static/js/main.a00dab22.chunk.js"
+  ]
+}
