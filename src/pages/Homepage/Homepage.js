@@ -88,17 +88,18 @@ const TrendingHashtags = [
 const genImg = () => (Math.random() * 10 > 4 ? clouttedlogo : clouttedlogo);
 
 const Tile = ({ title, onclickFunction }) => (
-  {title} === "My Family" ?
+
+  String({title}.title).localeCompare("My Family") ?
   (
     <div className="card__tile" onClick={() => onclickFunction?.()}>
       <img className="card__tileAvatar" alt="" src={genImg()} /> {"  "}{" "}
-      <a>{title} <LockIcon /></a>
+      <a>{title}</a>
     </div>
   ) :
   (
     <div className="card__tile" onClick={() => onclickFunction?.()}>
     <img className="card__tileAvatar" alt="" src={genImg()} /> {"  "}{" "}
-    <a>{title}</a>
+    <a>{title} <LockIcon fontSize="small"/></a>
     </div>
   )
 );

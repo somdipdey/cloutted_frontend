@@ -8,7 +8,7 @@ const posts = [
         owner: {
           name: "ramnewmann",
           isVerified: false,
-          value: 253.3,
+          value: "253.3",
           avatar: "/gman1.jpg",
         },
         post: {
@@ -28,7 +28,7 @@ const posts = [
         owner: {
           name: "cloutted",
           isVerified: true,
-          value: 3_775.1,
+          value: "3,775.1",
           avatar: "/favicon.png",
         },
         post: {
@@ -48,7 +48,7 @@ const posts = [
         owner: {
           name: "sumansaha",
           isVerified: true,
-          value: 21_775.1,
+          value: "775.1",
           avatar: "/sumansaha.jpg",
         },
         post: {

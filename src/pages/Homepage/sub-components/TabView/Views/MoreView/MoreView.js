@@ -11,7 +11,7 @@ const posts = [
     owner: {
       name: "cloutted",
       isVerified: true,
-      value: 33_775.1,
+      value: "3,775.1",
       avatar: "/favicon.png",
     },
     post: {
