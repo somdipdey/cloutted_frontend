@@ -33,17 +33,22 @@ const UserInfoRow = ({ user, postCategory }) => (
         <p>{user.name}</p>
         {user.isVerified ? (
           <span data-id="verified-tip" data-tip="This account is verified">
-          <CheckCircleRoundedIcon style={{ color: "blue" }} />
+            <CheckCircleRoundedIcon style={{ color: "blue" }} />
           </span>
         ) : null}
-        <ReactTooltip data-id="verified-tip" effect="float"/>
+        <ReactTooltip data-id="verified-tip" effect="float" />
       </div>
       <div className="Posts__userValue">
         {`~$${user.value}`}
-        <a href="">Buy</a>
+        <a>Buy</a>
       </div>
     </div>
-    <div className="Posts__userPostCategory" onClick = {()=> history?.push("/community")}>{postCategory}</div>
+    <div
+      className="Posts__userPostCategory"
+      onClick={() => history?.push("/community")}
+    >
+      {postCategory}
+    </div>
   </div>
 );
 
@@ -72,9 +77,7 @@ const PostsRow = ({ post }) => (
       <div className="PostsRow__actionsMore">
         <MoreVertOutlinedIcon />
       </div>
-      <div className="PostsRow__postTime">
-        {post?.postTime}
-      </div>
+      <div className="PostsRow__postTime">{post?.postTime}</div>
     </div>
   </div>
 );

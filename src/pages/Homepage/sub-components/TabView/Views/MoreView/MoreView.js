@@ -3,8 +3,6 @@ import "./MoreView.scss";
 import Posts from "../../sub-components/Posts/Posts";
 import Button from "../../../../../../components/Button/Button";
 
-let history;
-
 const posts = [
   {
     id: 1,
@@ -24,16 +22,17 @@ const posts = [
       postCategory: "Cloutted CoreTeam",
     },
   },
-
 ];
 
 function MoreView() {
   return (
     <div className="MoreView">
       <Posts posts={posts} />
-      <Button buttonText="Buy" 
-      buttonLink="https://bitclout.com/u/cloutted"
-      spaceTop />
+      <Button
+        buttonText="Buy"
+        buttonLink="https://bitclout.com/u/cloutted"
+        spaceTop
+      />
     </div>
   );
 }

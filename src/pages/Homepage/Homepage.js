@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Card from "../../components/Card/Card";
 import "./Homepage.scss";
-//import somdipdey from "../../assets/stub/somdipdey.jpg";
-//import jakeudell from "../../assets/stub/jakeudell.jpg";
+
 import clouttedlogo from "../../assets/stub/favicon.png";
 
 import AddRoundedIcon from "@material-ui/icons/AddRounded";

@@ -5,15 +5,27 @@ a {
 
 @media (max-width: 1450px) {
   p {
-    font-size: 0.6rem;
+    font-size: 0.8rem;
   }
 
   a {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
   }
 
-  .PostsRow__body,
-  .card__tile {
+  .Button > a {
+    justify-content: center;
+    color: #000;
+  }
+
+  .PostsRow__body {
     font-size: 0.8rem !important;
+  }
+
+  * {
+    font-size: 0.85rem;
   }
 }
