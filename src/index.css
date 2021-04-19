@@ -2,7 +2,7 @@
 
 body {
   margin: 0;
-  font-family: "roboto mono";
+  font-family: "roboto mono", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

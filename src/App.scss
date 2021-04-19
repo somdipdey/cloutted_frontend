@@ -2,3 +2,18 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
+
+@media (max-width: 1450px) {
+  p {
+    font-size: 0.6rem;
+  }
+
+  a {
+    font-size: 0.6rem;
+  }
+
+  .PostsRow__body,
+  .card__tile {
+    font-size: 0.8rem !important;
+  }
+}
