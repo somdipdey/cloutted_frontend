@@ -18,96 +18,96 @@ let history;
 const Communities = [
   {
     title: "Music Industry",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "BitClout Clubhouse",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "#Memes",
-    onclickFunction: () => history?.push("/hastags"),
+    onclickFunction: () => history?.push("/"),
   },
-  { title: "NBA Top Shot", onclickFunction: () => history?.push("/community") },
+  { title: "NBA Top Shot", onclickFunction: () => history?.push("/") },
   {
     title: "Bitcoin Enthusiasts",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "#CreatorIncentives",
-    onclickFunction: () => history?.push("/hastags"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "#FemaleEmpowerment",
-    onclickFunction: () => history?.push("/hastags"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "NFT Community",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "#BitCloutBoys",
-    onclickFunction: () => history?.push("/hastags"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "My Family",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
 ];
 
 const MyLists = [
   {
     title: "Creators in my wallet",
-    onclickFunction: () => history?.push("/mylists"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "People who invested in me ",
-    onclickFunction: () => history?.push("/mylists"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "My Friends on Bitclout",
-    onclickFunction: () => history?.push("/mylists"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "People I’m tracking to buy",
-    onclickFunction: () => history?.push("/mylists"),
+    onclickFunction: () => history?.push("/"),
   },
 ];
 
 const TopCommunities = [
   {
     title: "BitClout Meetups",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "Animal Lovers",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "Music Industry",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
   { title: "Dating", onclickFunction: () => history?.push("/community") },
   {
     title: "Women on BitClout",
-    onclickFunction: () => history?.push("/community"),
+    onclickFunction: () => history?.push("/"),
   },
 ];
 
 const TrendingHashtags = [
-  { title: "#Cloutted", onclickFunction: () => history?.push("/hastags") },
+  { title: "#Cloutted", onclickFunction: () => history?.push("/") },
   {
     title: "#BitCloutMadeMeDoIt",
-    onclickFunction: () => history?.push("/hastags"),
+    onclickFunction: () => history?.push("/"),
   },
   { title: "#Technology", onclickFunction: () => history?.push("/hastags") },
   {
     title: "#Community",
-    onclickFunction: () => history?.push("/hastags"),
+    onclickFunction: () => history?.push("/"),
   },
   {
     title: "#Memes",
-    onclickFunction: () => history?.push("/hastags"),
+    onclickFunction: () => history?.push("/"),
   },
 ];
 
@@ -178,17 +178,23 @@ const CommunitiesCardBody = () => (
   <div className="communities">
     <AddCommunityButton />
     {Communities.map(({ title, onclickFunction }) => (
+      <span
+      data-id="communities-tip"
+      data-tip="Join your favourite communities and hashtags you'd like to follow."
+      >
       <Tile
         title={title}
         onclickFunction={onclickFunction}
         imgSrc={"/faviconhead.png"}
       />
+      </span>
     ))}
     <Button
       buttonText="View All"
-      onClick={() => history?.push("/community")}
+      onClick={() => history?.push("/")}
       spaceTop
     />
+    <ReactTooltip data-id="communities-tip" effect="float" />
   </div>
 );
 
@@ -196,39 +202,57 @@ const MyListsCardBody = () => (
   <div className="mylists">
     <AddMyListsButton />
     {MyLists.map(({ title, onclickFunction }) => (
+      <span
+      data-id="mylists-tip"
+      data-tip="Add specific users to custom lists and view their related posts."
+      >
       <Tile title={title} onclickFunction={onclickFunction} />
+      </span>
     ))}
     <Button
       buttonText="View All"
-      onClick={() => history?.push("/mylists")}
+      onClick={() => history?.push("/")}
       spaceTop
     />
+    <ReactTooltip data-id="mylists-tip" effect="float" />
   </div>
 );
 
 const TopCommunitiesCardBody = () => (
   <div className="topcommunities">
     {TopCommunities.map(({ title, onclickFunction }) => (
+      <span
+      data-id="top-communities-tip"
+      data-tip="View all the leading communities in the Cloutted ecosystem."
+      >
       <Tile title={title} onclickFunction={onclickFunction} />
+      </span>
     ))}
     <Button
       buttonText="View All"
-      onClick={() => history?.push("/community")}
+      onClick={() => history?.push("/")}
       spaceTop
     />
+    <ReactTooltip data-id="top-communities-tip" effect="float" />
   </div>
 );
 
 const TrendingHashtagsCardBody = () => (
   <div className="trendinghashtags">
     {TrendingHashtags.map(({ title, onclickFunction }) => (
+      <span
+      data-id="trending-hashtags-tip"
+      data-tip="View the latest and most relevant hashtags."
+      >
       <Tile title={title} onclickFunction={onclickFunction} />
+      </span>
     ))}
     <Button
       buttonText="View All"
-      onClick={() => history?.push("/hastags")}
+      onClick={() => history?.push("/")}
       spaceTop
     />
+    <ReactTooltip data-id="trending-hashtags-tip" effect="float" />
   </div>
 );
 
