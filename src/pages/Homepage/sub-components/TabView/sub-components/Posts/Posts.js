@@ -54,15 +54,15 @@ const UserInfoRow = ({ user, postCategory }) => (
 
 const PostsRow = ({ post }) => (
   <div className="PostsRow">
-    <div className="PostsRow__body">{post?.body}</div>
+    <div className="PostsRow__body">{post?.Body}</div>
     <div className="PostsRow__actions">
       <div className="PostsRow__actionsComment">
         <ChatBubbleOutlineRoundedIcon />
-        {post?.comments}
+        {post?.Comments}
       </div>
       <div className="PostsRow__actionsReclout">
         <CachedOutlinedIcon />
-        {post?.reClouts}
+        {post?.RecloutCount}
       </div>
       <div className="PostsRow__actionsShare">
         <ShareOutlinedIcon />
@@ -84,10 +84,10 @@ const PostsRow = ({ post }) => (
 
 const Post = ({ post }) => (
   <div className="Posts__post">
-    <Liker likes={post.post.likes} isLiked={post.post.isLiked} />
+    <Liker likes={post?.LikeCount} isLiked={post?.isLiked} />
     <div className="Posts__postMain">
-      <UserInfoRow user={post.owner} postCategory={post.post.postCategory} />
-      <PostsRow post={post.post} />
+      <UserInfoRow user={post?.owner} postCategory={post.post.postCategory} />
+      <PostsRow post={post} />
     </div>
   </div>
 );

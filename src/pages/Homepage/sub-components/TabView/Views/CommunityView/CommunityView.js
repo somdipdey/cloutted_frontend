@@ -12,8 +12,7 @@ const posts = [
       avatar: "/bitclout500.jpg",
     },
     post: {
-      body:
-        "Those who join communities will see the native Cloutted feed here. All the most recent posts from all the communities you joined will be shown. 🙌🏼🙌🏼🙌🏼",
+      body: "Those who join communities will see the native Cloutted feed here. All the most recent posts from all the communities you joined will be shown. 🙌🏼🙌🏼🙌🏼",
       likes: 99,
       reClouts: 3,
       comments: 112,
@@ -32,8 +31,7 @@ const posts = [
       avatar: "/favicon.png",
     },
     post: {
-      body:
-        "Cloutted Communities is your feed for all the communities you joined together. You can also click your community on the left panel to view that specific community thread as well. 🤩🤩🤩 ",
+      body: "Cloutted Communities is your feed for all the communities you joined together. You can also click your community on the left panel to view that specific community thread as well. 🤩🤩🤩 ",
       likes: 115,
       reClouts: 21,
       comments: 93,
@@ -52,8 +50,7 @@ const posts = [
       avatar: "/somdipdey.jpg",
     },
     post: {
-      body:
-        "Along with Public Communities, you can start private ones to socialize with your friends and family. This will allow you to share each other's posts while also having a private messaging platform among the group.",
+      body: "Along with Public Communities, you can start private ones to socialize with your friends and family. This will allow you to share each other's posts while also having a private messaging platform among the group.",
       likes: 153,
       reClouts: 21,
       comments: 93,
