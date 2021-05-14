@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage/Homepage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Screenshots from "./pages/Screenshots/Screenshots";
 import TypeForm from "./pages/TypeForm/TypeForm";
+import HashTag from "./pages/HashTag/HashTag";
 
 function App() {
   return (
@@ -28,11 +29,8 @@ function App() {
               imgCaption="See members within your communities, connect with like-minded people, find and follow your friends."
             />
           </Route>
-          <Route exact path="/hastags">
-            <Screenshots
-              imgSrc={"/hashtags.JPG"}
-              imgCaption="See the latest trends on Bitclout and Cloutted. Find related hashtags. See what others are talking about across various topics."
-            />
+          <Route exact path="/hashtags">
+            <HashTag />
           </Route>
           <Route exact path="/mylists">
             <Screenshots
