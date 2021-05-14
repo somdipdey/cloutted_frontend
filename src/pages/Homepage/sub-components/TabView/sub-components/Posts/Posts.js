@@ -30,7 +30,7 @@ const UserInfoRow = ({ user, postCategory }) => (
         <img src={user.avatar} alt="" />
       </div>
       <div className="Posts__userName">
-        <p>{user.name}</p>
+        <p><a href={`http://bitclout.com/u/${user.name}`} target="_blank"> {user.name} </a></p>
         {user.isVerified ? (
           <span data-id="verified-tip" data-tip="This account is verified">
             <CheckCircleRoundedIcon style={{ color: "blue" }} />
@@ -38,17 +38,21 @@ const UserInfoRow = ({ user, postCategory }) => (
         ) : null}
         <ReactTooltip data-id="verified-tip" effect="float" />
       </div>
+      {/*
       <div className="Posts__userValue">
         {`~$${user.value}`}
         <a>Buy</a>
       </div>
+      */}
     </div>
+    {/*
     <div
       className="Posts__userPostCategory"
       onClick={() => history?.push("/community")}
     >
       {postCategory}
     </div>
+    */}
   </div>
 );
 
@@ -60,6 +64,7 @@ const PostsRow = ({ post }) => (
         <ChatBubbleOutlineRoundedIcon />
         {post?.Comments}
       </div>
+      {/*
       <div className="PostsRow__actionsReclout">
         <CachedOutlinedIcon />
         {post?.RecloutCount}
@@ -77,6 +82,7 @@ const PostsRow = ({ post }) => (
       <div className="PostsRow__actionsMore">
         <MoreVertOutlinedIcon />
       </div>
+        */}
       <div className="PostsRow__postTime">{post?.postTime}</div>
     </div>
   </div>
@@ -84,7 +90,7 @@ const PostsRow = ({ post }) => (
 
 const Post = ({ post }) => (
   <div className="Posts__post">
-    <Liker likes={post?.LikeCount} isLiked={post?.isLiked} />
+    {/*<Liker likes={post?.LikeCount} isLiked={post?.isLiked} /> */}
     <div className="Posts__postMain">
       <UserInfoRow user={post?.owner} postCategory={post.post.postCategory} />
       <PostsRow post={post} />

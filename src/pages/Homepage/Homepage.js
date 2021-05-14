@@ -277,8 +277,8 @@ function Homepage() {
       </div>
 
       <div className="Homepage__rightSidebar">
-        <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
         <Card headerText="Trending Hashtags" body={TrendingHashtagsCardBody} />
+        <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
       </div>
     </div>
   );
