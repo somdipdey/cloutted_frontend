@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import ReactTooltip from "react-tooltip";
 import { useHistory } from "react-router";
+import axios from "axios";
 
 // styles
 import "./HashTag.scss";
@@ -17,7 +18,7 @@ import CreatePost from "../../components/CreatePost/CreatePost";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Posts from "./sub-components/Posts/Posts";
-import axios from "axios";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 // icons
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
@@ -250,14 +251,15 @@ const TrendingHashtagsCardBody = () => (
   </div>
 );
 
-function HashTag() {
+function HashTag({ match }) {
   history = useHistory();
+
+  const hashtag = match?.params?.hashtag;
 
   const [posts, setPosts] = useState([]);
 
   const data = {
-    searchTerm: "bitclout",
-    // searchLimit: 1,
+    searchTerm: hashtag || "bitclout",
   };
 
   const options = {
@@ -274,7 +276,6 @@ function HashTag() {
       .then((res) => {
         const { data } = res;
         const posts = data.hashtags.map(({ post }) => post);
-        console.log(posts);
         setPosts(posts);
 
         // console.log(data?.message);
@@ -291,7 +292,21 @@ function HashTag() {
 
       <div className="HashTag__middleArea">
         <CreatePost />
-        <Posts posts={posts} />
+        {posts.length < 1 ? (
+          <div
+            style={{
+              height: "50%",
+              width: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress />
+          </div>
+        ) : (
+          <Posts posts={posts} />
+        )}
       </div>
 
       <div className="HashTag__rightSidebar">

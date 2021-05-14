@@ -2,12 +2,20 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import { StateProvider } from "./data_layer/store";
 import reportWebVitals from "./reportWebVitals";
 import "./Scrollbar.scss";
+import reducer, { initialState } from "./data_layer/reducer";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./theme";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <StateProvider initialState={initialState} reducer={reducer}>
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
+    </StateProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

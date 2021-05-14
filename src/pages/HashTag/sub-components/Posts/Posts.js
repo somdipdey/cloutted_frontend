@@ -29,10 +29,10 @@ const UserInfoRow = ({ user, postCategory }) => (
   <div className="Posts__user">
     <div className="Posts__userInfo">
       <div className="Posts__userAvatar">
-        <img src={user?.ProfilePic} alt="" />
+        <img src={user?.ProfilePic || "/emptyPic.png"} alt="" />
       </div>
       <div className="Posts__userName">
-        <p>{user?.Username}</p>
+        <p>{user?.Username || "Anonymous"}</p>
         {user?.IsVerified ? (
           <span data-id="verified-tip" data-tip="This account is verified">
             <CheckCircleRoundedIcon style={{ color: "blue" }} />
@@ -101,7 +101,7 @@ const Post = ({ post }) => {
     <div className="Posts__post">
       <Liker likes={post?.LikeCount} isLiked={post?.isLiked} />
       <div className="Posts__postMain">
-        <UserInfoRow user={owner} postCategory={null} />
+        <UserInfoRow user={null} postCategory={null} />
         <PostsRow post={post} />
       </div>
     </div>

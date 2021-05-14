@@ -55,10 +55,11 @@
     width: var(--length);
     border-radius: 10px;
     overflow: hidden;
-
+    background-color: #fff;
     & > img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
     }
   }
 

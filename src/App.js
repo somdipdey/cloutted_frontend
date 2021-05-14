@@ -29,9 +29,8 @@ function App() {
               imgCaption="See members within your communities, connect with like-minded people, find and follow your friends."
             />
           </Route>
-          <Route exact path="/hashtags">
-            <HashTag />
-          </Route>
+          <Route exact path="/hashtags" component={HashTag}></Route>
+          <Route exact path="/hashtags/:hashtag" component={HashTag}></Route>
           <Route exact path="/mylists">
             <Screenshots
               imgSrc={"/MyLists.JPG"}
