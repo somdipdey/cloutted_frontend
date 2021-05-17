@@ -30,7 +30,11 @@ function App() {
             />
           </Route>
           <Route exact path="/hashtags" component={HashTag}></Route>
-          <Route exact path="/hashtags/:hashtag" component={HashTag}></Route>
+          <Route
+            exact
+            path="/hashtags/:hashtag"
+            render={(props) => <HashTag key={props.match.params} {...props} />}
+          />
           <Route exact path="/mylists">
             <Screenshots
               imgSrc={"/MyLists.JPG"}

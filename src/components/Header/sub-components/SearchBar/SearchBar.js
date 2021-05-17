@@ -69,7 +69,7 @@ function SearchBar() {
         onChange={(e, newValue) => {
           setInputValue("");
           e?.preventDefault();
-          history.push(`/hashtags/${newValue?.hashtag?.trim()}`);
+          history.push(`/hashtags/${newValue?.hashtag?.trim() || ""}`);
         }}
         style={{ width: "100%" }}
         renderOption={(option) => option?.hashtag}

@@ -12,6 +12,7 @@ import TabView from "./sub-components/TabView/TabView";
 import Button from "../../components/Button/Button";
 import ReactTooltip from "react-tooltip";
 import { useHistory } from "react-router";
+import TrendingHashtagsCardBody from "../../components/TrendingHashtagsCardBody/TrendingHashtagsCardBody";
 
 let history;
 
@@ -179,21 +180,17 @@ const CommunitiesCardBody = () => (
     <AddCommunityButton />
     {Communities.map(({ title, onclickFunction }) => (
       <span
-      data-id="communities-tip"
-      data-tip="Join your favourite communities and hashtags you'd like to follow."
+        data-id="communities-tip"
+        data-tip="Join your favourite communities and hashtags you'd like to follow."
       >
-      <Tile
-        title={title}
-        onclickFunction={onclickFunction}
-        imgSrc={"/faviconhead.png"}
-      />
+        <Tile
+          title={title}
+          onclickFunction={onclickFunction}
+          imgSrc={"/faviconhead.png"}
+        />
       </span>
     ))}
-    <Button
-      buttonText="View All"
-      onClick={() => history?.push("/")}
-      spaceTop
-    />
+    <Button buttonText="View All" onClick={() => history?.push("/")} spaceTop />
     <ReactTooltip data-id="communities-tip" effect="float" />
   </div>
 );
@@ -203,17 +200,13 @@ const MyListsCardBody = () => (
     <AddMyListsButton />
     {MyLists.map(({ title, onclickFunction }) => (
       <span
-      data-id="mylists-tip"
-      data-tip="Add specific users to custom lists and view their related posts."
+        data-id="mylists-tip"
+        data-tip="Add specific users to custom lists and view their related posts."
       >
-      <Tile title={title} onclickFunction={onclickFunction} />
+        <Tile title={title} onclickFunction={onclickFunction} />
       </span>
     ))}
-    <Button
-      buttonText="View All"
-      onClick={() => history?.push("/")}
-      spaceTop
-    />
+    <Button buttonText="View All" onClick={() => history?.push("/")} spaceTop />
     <ReactTooltip data-id="mylists-tip" effect="float" />
   </div>
 );
@@ -222,37 +215,14 @@ const TopCommunitiesCardBody = () => (
   <div className="topcommunities">
     {TopCommunities.map(({ title, onclickFunction }) => (
       <span
-      data-id="top-communities-tip"
-      data-tip="View all the leading communities in the Cloutted ecosystem."
+        data-id="top-communities-tip"
+        data-tip="View all the leading communities in the Cloutted ecosystem."
       >
-      <Tile title={title} onclickFunction={onclickFunction} />
+        <Tile title={title} onclickFunction={onclickFunction} />
       </span>
     ))}
-    <Button
-      buttonText="View All"
-      onClick={() => history?.push("/")}
-      spaceTop
-    />
+    <Button buttonText="View All" onClick={() => history?.push("/")} spaceTop />
     <ReactTooltip data-id="top-communities-tip" effect="float" />
-  </div>
-);
-
-const TrendingHashtagsCardBody = () => (
-  <div className="trendinghashtags">
-    {TrendingHashtags.map(({ title, onclickFunction }) => (
-      <span
-      data-id="trending-hashtags-tip"
-      data-tip="View the latest and most relevant hashtags."
-      >
-      <Tile title={title} onclickFunction={onclickFunction} />
-      </span>
-    ))}
-    <Button
-      buttonText="View All"
-      onClick={() => history?.push("/")}
-      spaceTop
-    />
-    <ReactTooltip data-id="trending-hashtags-tip" effect="float" />
   </div>
 );
 

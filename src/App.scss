@@ -1,6 +1,14 @@
 a {
   cursor: pointer;
   text-decoration: none;
+
+  &:active {
+    color: #98f0d8;
+  }
+
+  &:hover {
+    font-weight: 600;
+  }
 }
 
 @media (max-width: 1450px) {

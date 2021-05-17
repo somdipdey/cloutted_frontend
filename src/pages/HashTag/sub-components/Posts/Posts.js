@@ -11,15 +11,13 @@ import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReactTooltip from "react-tooltip";
 import { useHistory } from "react-router";
-import axios from "axios";
-import { endPoints } from "../../../../config/api";
 
 let history;
 
-const Liker = ({ likes, isLiked }) => (
+const Liker = ({ likes, isLiked, likeClickedHandler }) => (
   <div className="Posts__postLikeWrap">
-    <div className="Posts__postLikes">{likes}</div>
-    <div className="Posts__postLikeBtn">
+    <div className="Posts__postLikes">{likes + (isLiked ? 1 : 0)}</div>
+    <div className="Posts__postLikeBtn" onClick={likeClickedHandler}>
       {isLiked ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
     </div>
   </div>
@@ -40,7 +38,7 @@ const UserInfoRow = ({ user, postCategory }) => (
         ) : null}
         <ReactTooltip data-id="verified-tip" effect="float" />
       </div>
-      <div className="Posts__userValue">
+      <div className="Posts__userValue" style={{ display: "none" }}>
         {`~$${user?.value || 0}`}
         <a>Buy</a>
       </div>
@@ -57,7 +55,7 @@ const UserInfoRow = ({ user, postCategory }) => (
 const PostsRow = ({ post }) => (
   <div className="PostsRow">
     <div className="PostsRow__body">{post?.Body}</div>
-    <div className="PostsRow__actions">
+    <div className="PostsRow__actions" style={{ display: "none" }}>
       <div className="PostsRow__actionsComment">
         <ChatBubbleOutlineRoundedIcon />
         {post?.Comments}
@@ -85,23 +83,19 @@ const PostsRow = ({ post }) => (
 );
 
 const Post = ({ post }) => {
-  const [owner, setOwner] = useState(null);
+  const [isLiked, setIsLiked] = useState(false);
 
-  useEffect(() => {
-    const { PublicKeyBase58Check } = post;
-
-    axios
-      .get(endPoints.getUserProfile, { params: { PublicKeyBase58Check } })
-      .then(({ data: { user } }) => {
-        setOwner(user);
-      });
-  }, []);
+  const toggleLike = () => setIsLiked(!isLiked);
 
   return (
     <div className="Posts__post">
-      <Liker likes={post?.LikeCount} isLiked={post?.isLiked} />
+      <Liker
+        likes={post?.LikeCount}
+        isLiked={isLiked}
+        likeClickedHandler={toggleLike}
+      />
       <div className="Posts__postMain">
-        <UserInfoRow user={null} postCategory={null} />
+        <UserInfoRow user={post?.owner} postCategory={null} />
         <PostsRow post={post} />
       </div>
     </div>

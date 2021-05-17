@@ -29,6 +29,23 @@
   &__postLikes {
     text-align: center;
   }
+
+  &__postLikeBtn {
+    padding: 0.5rem;
+    padding-bottom: 0;
+    border-radius: 50%;
+    transition: background-color 200ms ease-in-out;
+    transition-property: transform, background-color;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &:active > svg {
+      transform: scale(0.75);
+    }
+  }
 }
 
 .Posts {

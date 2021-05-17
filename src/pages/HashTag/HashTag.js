@@ -23,6 +23,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 // icons
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import LockIcon from "@material-ui/icons/Lock";
+import TrendingHashtagsCardBody from "../../components/TrendingHashtagsCardBody/TrendingHashtagsCardBody";
 
 let history;
 
@@ -236,27 +237,13 @@ const TopCommunitiesCardBody = () => (
   </div>
 );
 
-const TrendingHashtagsCardBody = () => (
-  <div className="trendinghashtags">
-    {TrendingHashtags.map(({ title, onclickFunction }) => (
-      <span
-        data-id="trending-hashtags-tip"
-        data-tip="View the latest and most relevant hashtags."
-      >
-        <Tile title={title} onclickFunction={onclickFunction} />
-      </span>
-    ))}
-    <Button buttonText="View All" onClick={() => history?.push("/")} spaceTop />
-    <ReactTooltip data-id="trending-hashtags-tip" effect="float" />
-  </div>
-);
-
 function HashTag({ match }) {
   history = useHistory();
 
-  const hashtag = match?.params?.hashtag;
+  const hashtag = match?.params?.hashtag || "";
 
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const data = {
     searchTerm: hashtag || "bitclout",
@@ -271,17 +258,17 @@ function HashTag({ match }) {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     axios
       .get(endPoints.hashtags, options)
       .then((res) => {
         const { data } = res;
         const posts = data.hashtags.map(({ post }) => post);
+        setIsLoading(false);
         setPosts(posts);
-
-        // console.log(data?.message);
       })
       .catch((err) => console.error(err?.response?.data?.message));
-  }, []);
+  }, [match?.params?.hashtag]);
 
   return (
     <div className="HashTag">
@@ -292,7 +279,7 @@ function HashTag({ match }) {
 
       <div className="HashTag__middleArea">
         <CreatePost />
-        {posts.length < 1 ? (
+        {isLoading ? (
           <div
             style={{
               height: "50%",
@@ -310,8 +297,8 @@ function HashTag({ match }) {
       </div>
 
       <div className="HashTag__rightSidebar">
-        <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
         <Card headerText="Trending Hashtags" body={TrendingHashtagsCardBody} />
+        <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
       </div>
     </div>
   );
