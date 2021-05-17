@@ -6,43 +6,57 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Screenshots from "./pages/Screenshots/Screenshots";
 import TypeForm from "./pages/TypeForm/TypeForm";
 import HashTag from "./pages/HashTag/HashTag";
+import Auth from "./auth_layer/components/Auth/Auth";
+import { useStateValue } from "./data_layer/store";
+import { useEffect, useState } from "react";
+
+const ClouttedApp = () => (
+  <>
+    <Header />
+    <Switch>
+      <Route exact path="/">
+        <Homepage />
+      </Route>
+      <Route exact path="/get-early">
+        <TypeForm />
+      </Route>
+      <Route exact path="/community">
+        <Screenshots
+          imgSrc={"/ClouttedCommunities.JPG"}
+          imgCaption="A place to find your friends and make new ones in the Cloutted ecosystem."
+        />
+        <Screenshots
+          imgSrc={"/memberDirectory.jpg"}
+          imgCaption="See members within your communities, connect with like-minded people, find and follow your friends."
+        />
+      </Route>
+      <Route exact path="/hashtags" component={HashTag}></Route>
+      <Route
+        exact
+        path="/hashtags/:hashtag"
+        render={(props) => <HashTag key={props.match.params} {...props} />}
+      />
+      <Route exact path="/mylists">
+        <Screenshots
+          imgSrc={"/MyLists.JPG"}
+          imgCaption="Curate your own feed, customize who you see, and share your lists!"
+        />
+      </Route>
+    </Switch>
+  </>
+);
 
 function App() {
+  const [{ user }, _] = useStateValue();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // useEffect(() => {
+  //   setIsAuthenticated(!!user);
+  // }, [user]);
+
   return (
     <Router>
-      <div className="App">
-        <Header />
-        <Switch>
-          <Route exact path="/">
-            <Homepage />
-          </Route>
-          <Route exact path="/get-early">
-            <TypeForm />
-          </Route>
-          <Route exact path="/community">
-            <Screenshots
-              imgSrc={"/ClouttedCommunities.JPG"}
-              imgCaption="A place to find your friends and make new ones in the Cloutted ecosystem."
-            />
-            <Screenshots
-              imgSrc={"/memberDirectory.jpg"}
-              imgCaption="See members within your communities, connect with like-minded people, find and follow your friends."
-            />
-          </Route>
-          <Route exact path="/hashtags" component={HashTag}></Route>
-          <Route
-            exact
-            path="/hashtags/:hashtag"
-            render={(props) => <HashTag key={props.match.params} {...props} />}
-          />
-          <Route exact path="/mylists">
-            <Screenshots
-              imgSrc={"/MyLists.JPG"}
-              imgCaption="Curate your own feed, customize who you see, and share your lists!"
-            />
-          </Route>
-        </Switch>
-      </div>
+      <div className="App">{user ? <ClouttedApp /> : <Auth />}</div>
     </Router>
   );
 }
