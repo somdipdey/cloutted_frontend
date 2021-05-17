@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import launchLoginWindow from "./auth_scripts/login";
 import "./Auth.scss";
 import launchLogoutWindow from "./auth_scripts/logout";
@@ -7,16 +7,11 @@ import Button from "../../../components/Button/Button";
 
 function Auth() {
   const [{}, dispatch] = useStateValue();
-  const [publicKey, setPublicKey] = useState(null);
+  const [PublicKeyBase58Check, setPublicKeyBase58Check] = useState(null);
 
-  useEffect(() => {
-    console.log("rinning");
-  }, [publicKey]);
-
-  const setKey = (publicKey) => {
-    console.log("doing it");
-    setPublicKey(publicKey);
-    dispatch({ type: "SET_USER", payload: publicKey });
+  const setKey = (PublicKeyBase58Check) => {
+    setPublicKeyBase58Check(PublicKeyBase58Check);
+    dispatch({ type: "SET_USER", payload: { PublicKeyBase58Check } });
   };
 
   return (

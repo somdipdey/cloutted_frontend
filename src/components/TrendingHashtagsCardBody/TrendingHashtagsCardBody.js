@@ -1,10 +1,10 @@
+import { Skeleton } from "@material-ui/lab";
 import { default as axios } from "axios";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { endPoints } from "../../config/api";
 import Button from "../Button/Button";
-import Skeleton from "react-loading-skeleton";
 
 let history;
 
@@ -23,7 +23,7 @@ const Tile = ({ title }) => (
         <div className="card__tile">{`#${title}`}</div>
       </Link>
     ) : (
-      <Skeleton />
+      <Skeleton variant="rect" animation="wave" width="100%" />
     )}
   </div>
 );

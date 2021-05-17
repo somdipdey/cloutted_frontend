@@ -2,11 +2,11 @@ import React from "react";
 import "./ProfileDropdown.scss";
 
 import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
-import ReactTooltip from "react-tooltip";
-import { Button, Menu, MenuItem } from "@material-ui/core";
+import { Menu, MenuItem } from "@material-ui/core";
 import { useStateValue } from "../../../../data_layer/store";
+import { Skeleton } from "@material-ui/lab";
 
-function ProfileDropdown() {
+function ProfileDropdown({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [{}, dispatch] = useStateValue();
 
@@ -31,7 +31,11 @@ function ProfileDropdown() {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        johndoe
+        {user?.Username ? (
+          user?.Username
+        ) : (
+          <Skeleton variant="rect" animation="wave" width={150} />
+        )}
       </div>
       <Menu
         id="profile-menu"
