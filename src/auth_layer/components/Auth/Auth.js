@@ -19,7 +19,7 @@ function Auth() {
       <h1>Welcome to #cloutted</h1>
       <Button
         spaceTop
-        buttonText=" Login "
+        buttonText=" Login with Bitclout"
         onClick={() => launchLoginWindow(setKey)}
       />
       {/* <a onClick={() => launchLogoutWindow(publicKey, setPublicKey)}>Logout</a> */}
