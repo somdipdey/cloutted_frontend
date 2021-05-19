@@ -5,6 +5,7 @@ const endPoints = {
   hashtags: `${API_BASE_URL}/hashtags`,
   hashtagtrends: `${API_BASE_URL}/hashtagtrends`,
   getUserProfile: `${API_BASE_URL}/users/get-user`,
+  getPostsPerUser: `${API_BASE_URL}/posts/by-user`,
 };
 
 module.exports = {

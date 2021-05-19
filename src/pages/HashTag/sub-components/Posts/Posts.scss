@@ -5,6 +5,22 @@
   flex-direction: column;
   width: 100%;
 
+  &__emptySmiley {
+    transform: rotate(90deg);
+    font-size: 4rem;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+  }
+
+  &__emptyMessage {
+    width: 100%;
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   &__post {
     background-color: #f8f8f8;
     border-radius: 15px;
@@ -24,6 +40,7 @@
     align-items: flex-start;
     flex: 1;
     margin: 1rem 3rem;
+    width: calc(100% - 6rem);
   }
 
   &__postLikes {
@@ -119,6 +136,14 @@
 }
 
 .PostsRow {
+  width: 100%;
+
+  &__anchor {
+    &:hover {
+      font-weight: normal;
+    }
+  }
+
   &__actions {
     display: flex;
     width: 70%;
@@ -139,5 +164,7 @@
     margin: 1rem;
     text-align: left;
     font-size: 1.1rem;
+    overflow-wrap: break-word;
+    width: 90%;
   }
 }

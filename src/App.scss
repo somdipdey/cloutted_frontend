@@ -1,13 +1,18 @@
 a {
   cursor: pointer;
   text-decoration: none;
-
+  color: #000;
+  max-width: 100%;
   &:active {
     color: #98f0d8;
   }
 
   &:hover {
     font-weight: 600;
+  }
+
+  &:visited {
+    color: #000;
   }
 }
 

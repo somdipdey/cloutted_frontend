@@ -5,6 +5,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { endPoints } from "../../config/api";
 import Button from "../Button/Button";
+import Card from "../Card/Card";
 
 let history;
 
@@ -40,16 +41,18 @@ function TrendingHashtagsCardBody() {
   }, []);
 
   return (
-    <div className="trendinghashtags">
-      {trendingHashtags.map(({ hashtag }, idx) => (
-        <Tile title={hashtag} key={idx} />
-      ))}
-      <Button
-        buttonText="View All"
-        onClick={() => history?.push("/hashtags")}
-        spaceTop
-      />
-    </div>
+    <Card headerText="Top Hashtags">
+      <div className="trendinghashtags">
+        {trendingHashtags.map(({ hashtag }, idx) => (
+          <Tile title={hashtag} key={idx} />
+        ))}
+        <Button
+          buttonText="View All"
+          onClick={() => history?.push("/hashtags")}
+          spaceTop
+        />
+      </div>
+    </Card>
   );
 }
 

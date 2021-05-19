@@ -25,24 +25,26 @@ const Liker = ({ likes, isLiked, likeClickedHandler }) => (
 
 const UserInfoRow = ({ user, postCategory }) => (
   <div className="Posts__user">
-    <div className="Posts__userInfo">
-      <div className="Posts__userAvatar">
-        <img src={user?.ProfilePic || "/emptyPic.png"} alt="" />
+    <a href={`https://www.bitclout.com/u/${user?.Username}`} target="_blank">
+      <div className="Posts__userInfo">
+        <div className="Posts__userAvatar">
+          <img src={user?.ProfilePic || "/emptyPic.png"} alt="" />
+        </div>
+        <div className="Posts__userName">
+          <p>{user?.Username || "Anonymous"}</p>
+          {user?.IsVerified ? (
+            <span data-id="verified-tip" data-tip="This account is verified">
+              <CheckCircleRoundedIcon style={{ color: "blue" }} />
+            </span>
+          ) : null}
+          <ReactTooltip data-id="verified-tip" effect="float" />
+        </div>
+        <div className="Posts__userValue" style={{ display: "none" }}>
+          {`~$${user?.value || 0}`}
+          <a>Buy</a>
+        </div>
       </div>
-      <div className="Posts__userName">
-        <p>{user?.Username || "Anonymous"}</p>
-        {user?.IsVerified ? (
-          <span data-id="verified-tip" data-tip="This account is verified">
-            <CheckCircleRoundedIcon style={{ color: "blue" }} />
-          </span>
-        ) : null}
-        <ReactTooltip data-id="verified-tip" effect="float" />
-      </div>
-      <div className="Posts__userValue" style={{ display: "none" }}>
-        {`~$${user?.value || 0}`}
-        <a>Buy</a>
-      </div>
-    </div>
+    </a>
     {/* <div
       className="Posts__userPostCategory"
       onClick={() => history?.push("/community")}
@@ -53,33 +55,39 @@ const UserInfoRow = ({ user, postCategory }) => (
 );
 
 const PostsRow = ({ post }) => (
-  <div className="PostsRow">
-    <div className="PostsRow__body">{post?.Body}</div>
-    <div className="PostsRow__actions" style={{ display: "none" }}>
-      <div className="PostsRow__actionsComment">
-        <ChatBubbleOutlineRoundedIcon />
-        {post?.Comments}
+  <a
+    className="PostsRow__anchor"
+    href={`https://bitclout.com/posts/${post?.PostHashHex}`}
+    target="_blank"
+  >
+    <div className="PostsRow">
+      <div className="PostsRow__body">{post?.Body}</div>
+      <div className="PostsRow__actions" style={{ display: "none" }}>
+        <div className="PostsRow__actionsComment">
+          <ChatBubbleOutlineRoundedIcon />
+          {post?.Comments}
+        </div>
+        <div className="PostsRow__actionsReclout">
+          <CachedOutlinedIcon />
+          {post?.RecloutCount}
+        </div>
+        <div className="PostsRow__actionsShare">
+          <ShareOutlinedIcon />
+        </div>
+        <div className="PostsRow__actionsSave">
+          {post?.isSaved ? (
+            <BookmarkOutlinedIcon />
+          ) : (
+            <BookmarkBorderOutlinedIcon />
+          )}
+        </div>
+        <div className="PostsRow__actionsMore">
+          <MoreVertOutlinedIcon />
+        </div>
+        <div className="PostsRow__postTime">{post?.postTime}</div>
       </div>
-      <div className="PostsRow__actionsReclout">
-        <CachedOutlinedIcon />
-        {post?.RecloutCount}
-      </div>
-      <div className="PostsRow__actionsShare">
-        <ShareOutlinedIcon />
-      </div>
-      <div className="PostsRow__actionsSave">
-        {post?.isSaved ? (
-          <BookmarkOutlinedIcon />
-        ) : (
-          <BookmarkBorderOutlinedIcon />
-        )}
-      </div>
-      <div className="PostsRow__actionsMore">
-        <MoreVertOutlinedIcon />
-      </div>
-      <div className="PostsRow__postTime">{post?.postTime}</div>
     </div>
-  </div>
+  </a>
 );
 
 const Post = ({ post }) => {
@@ -106,9 +114,14 @@ function Posts({ posts }) {
   history = useHistory();
   return (
     <div className="Posts">
-      {posts.map((post, idx) => (
-        <Post key={idx} post={post} />
-      ))}
+      {posts.length > 0 ? (
+        posts?.map((post, idx) => <Post key={idx} post={post} />)
+      ) : (
+        <div className="Posts__emptyMessage">
+          <p className="Posts__emptySmiley"> :&#10090; </p>
+          <span>Hey, You have no posts yet</span>
+        </div>
+      )}
     </div>
   );
 }

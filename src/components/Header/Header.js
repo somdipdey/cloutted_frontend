@@ -48,6 +48,9 @@ function Header() {
       <div className="Header__action" onClick={() => history.push("/")}>
         Home
       </div>
+      <div className="Header__action" onClick={() => history.push("/analyse")}>
+        Analyse hashtags
+      </div>
       <ProfileDropdown user={user} />
     </div>
   );

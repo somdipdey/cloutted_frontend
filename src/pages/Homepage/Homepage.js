@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../../components/Card/Card";
 import "./Homepage.scss";
 
@@ -7,12 +7,17 @@ import clouttedlogo from "../../assets/stub/favicon.png";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import LockIcon from "@material-ui/icons/Lock";
 import CreatePost from "../../components/CreatePost/CreatePost";
-import Tabs from "./sub-components/Tabs/Tabs";
-import TabView from "./sub-components/TabView/TabView";
+// import Tabs from "./sub-components/Tabs/Tabs";
+// import TabView from "./sub-components/TabView/TabView";
 import Button from "../../components/Button/Button";
 import ReactTooltip from "react-tooltip";
 import { useHistory } from "react-router";
 import TrendingHashtagsCardBody from "../../components/TrendingHashtagsCardBody/TrendingHashtagsCardBody";
+import Posts from "../HashTag/sub-components/Posts/Posts";
+import axios from "axios";
+import { endPoints } from "../../config/api";
+import { useStateValue } from "../../data_layer/store";
+import Loader from "../../components/Loader/Loader";
 
 let history;
 
@@ -148,7 +153,7 @@ const AddCommunityButton = () => (
       <AddRoundedIcon />
     </span>
     <ReactTooltip data-id="add-community-tip" effect="float" />
-    Add Community or Hashtag
+    Add Community
   </div>
 );
 
@@ -227,11 +232,26 @@ const TopCommunitiesCardBody = () => (
 );
 
 function Homepage() {
-  const [tabNo, setTabNo] = useState(0);
+  // const [tabNo, setTabNo] = useState(0); // for tabs
+
+  const [{ user }, _] = useStateValue();
+
+  const [posts, setPosts] = useState(null);
 
   history = useHistory();
 
-  const setTab = (idx) => setTabNo(idx);
+  useEffect(() => {
+    axios
+      .get(endPoints.getPostsPerUser, {
+        params: { PublicKeyBase58Check: user?.PublicKeyBase58Check },
+      })
+      .then(({ data: { posts } }) => {
+        setPosts([...posts.filter(({ Body }) => Body)]);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  // const setTab = (idx) => setTabNo(idx); // for tabs
 
   return (
     <div className="Homepage">
@@ -241,13 +261,12 @@ function Homepage() {
       </div>
 
       <div className="Homepage__middleArea">
-        <CreatePost />
-        <Tabs tabNo={tabNo} setTab={setTab} />
-        <TabView tab={tabNo} />
+        <h1>Your posts</h1>
+        {posts ? <Posts posts={posts} /> : <Loader />}
       </div>
 
       <div className="Homepage__rightSidebar">
-        <Card headerText="Trending Hashtags" body={TrendingHashtagsCardBody} />
+        <TrendingHashtagsCardBody />
         <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
       </div>
     </div>
@@ -255,3 +274,9 @@ function Homepage() {
 }
 
 export default Homepage;
+
+// previous middle area comps
+
+// <CreatePost />
+// <Tabs tabNo={tabNo} setTab={setTab} />
+// <TabView tab={tabNo} />

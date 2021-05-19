@@ -24,6 +24,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import LockIcon from "@material-ui/icons/Lock";
 import TrendingHashtagsCardBody from "../../components/TrendingHashtagsCardBody/TrendingHashtagsCardBody";
+import Loader from "../../components/Loader/Loader";
 
 let history;
 
@@ -159,7 +160,7 @@ const AddCommunityButton = () => (
       <AddRoundedIcon />
     </span>
     <ReactTooltip data-id="add-community-tip" effect="float" />
-    Add Community or Hashtag
+    Add Community
   </div>
 );
 
@@ -278,26 +279,14 @@ function HashTag({ match }) {
       </div>
 
       <div className="HashTag__middleArea">
-        <CreatePost />
-        {isLoading ? (
-          <div
-            style={{
-              height: "50%",
-              width: "100%",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <CircularProgress />
-          </div>
-        ) : (
-          <Posts posts={posts} />
-        )}
+        {/* <CreatePost />
+         */}
+        <h1 className="HashTag__pageLabel">{`#${hashtag}`}</h1>
+        {isLoading ? <Loader /> : <Posts posts={posts} />}
       </div>
 
       <div className="HashTag__rightSidebar">
-        <Card headerText="Trending Hashtags" body={TrendingHashtagsCardBody} />
+        <TrendingHashtagsCardBody />
         <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
       </div>
     </div>

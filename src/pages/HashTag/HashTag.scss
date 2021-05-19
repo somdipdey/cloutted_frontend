@@ -16,6 +16,10 @@
     display: flex;
     flex-direction: column;
   }
+
+  &__pageLabel {
+    margin: 1rem 0;
+  }
 }
 
 // shame css

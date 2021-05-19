@@ -25,6 +25,18 @@ function ProfileDropdown({ user }) {
 
   return (
     <div className="ProfileDropdown">
+      <div className="ProfileDropdown__avatar">
+        {user?.ProfilePic ? (
+          <img alt="" src={user?.ProfilePic} />
+        ) : (
+          <Skeleton
+            variant="rect"
+            height="100%"
+            width="100%"
+            animation="wave"
+          />
+        )}
+      </div>
       <div
         className="ProfileDropdown__name"
         aria-controls="profile-menu"

@@ -3,11 +3,11 @@ import CardBody from "./sub-component/CardBody/CardBody";
 import CardHeader from "./sub-component/CardHeader/CardHeader";
 import "./Card.scss";
 
-function Card({ headerText, body }) {
+function Card({ headerText, body, children }) {
   return (
     <div className="Card">
       <CardHeader headerText={headerText} />
-      <CardBody>{body()}</CardBody>
+      <CardBody>{body?.() || children}</CardBody>
     </div>
   );
 }
