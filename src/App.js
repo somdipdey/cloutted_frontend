@@ -9,6 +9,7 @@ import HashTag from "./pages/HashTag/HashTag";
 import Auth from "./auth_layer/components/Auth/Auth";
 import { useStateValue } from "./data_layer/store";
 import { useEffect, useState } from "react";
+import Analyse from "./pages/Analyse/Analyse";
 
 const ClouttedApp = () => (
   <>
@@ -36,6 +37,7 @@ const ClouttedApp = () => (
         path="/hashtags/:hashtag"
         render={(props) => <HashTag key={props.match.params} {...props} />}
       />
+      <Route exact path="/analyse" render={(props) => <Analyse {...props} />} />
       <Route exact path="/mylists">
         <Screenshots
           imgSrc={"/MyLists.JPG"}

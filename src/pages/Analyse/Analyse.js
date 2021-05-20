@@ -1,30 +1,24 @@
-// packages
 import React, { useEffect, useState } from "react";
-import ReactTooltip from "react-tooltip";
-import { useHistory } from "react-router";
-import axios from "axios";
+import Card from "../../components/Card/Card";
+import "./Analyse.scss";
 
-// styles
-import "./HashTag.scss";
-
-// assets
 import clouttedlogo from "../../assets/stub/favicon.png";
 
-// config
-import { endPoints } from "../../config/api";
-
-// components
-import CreatePost from "../../components/CreatePost/CreatePost";
-import Button from "../../components/Button/Button";
-import Card from "../../components/Card/Card";
-import Posts from "./sub-components/Posts/Posts";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
-// icons
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import LockIcon from "@material-ui/icons/Lock";
+import CreatePost from "../../components/CreatePost/CreatePost";
+// import Tabs from "./sub-components/Tabs/Tabs";
+// import TabView from "./sub-components/TabView/TabView";
+import Button from "../../components/Button/Button";
+import ReactTooltip from "react-tooltip";
+import { useHistory } from "react-router";
 import TrendingHashtagsCardBody from "../../components/TrendingHashtagsCardBody/TrendingHashtagsCardBody";
+import Posts from "../HashTag/sub-components/Posts/Posts";
+import axios from "axios";
+import { endPoints } from "../../config/api";
+import { useStateValue } from "../../data_layer/store";
 import Loader from "../../components/Loader/Loader";
+import AnalyseInput from "./AnalyseInput/AnalyseInput";
 
 let history;
 
@@ -238,63 +232,63 @@ const TopCommunitiesCardBody = () => (
   </div>
 );
 
-function HashTag({ match }) {
+const makePosts = (hashtags) => hashtags.map(({ post }) => post);
+
+const getHashtags = (hashtags) =>
+  Array.from(new Set(hashtags.map(({ hashtag }) => hashtag)));
+
+function Analyse() {
+  // const [tabNo, setTabNo] = useState(0); // for tabs
+  // const setTab = (idx) => setTabNo(idx); // for tabs
+
+  const [posts, setPosts] = useState(null);
+
+  const [userPublicKey, setUserPublicKey] = useState(null);
+  const [hastagsFound, setHastagsFound] = useState([]);
+
+  const onAnalyseButtonClick = (key) => setUserPublicKey(key);
+
   history = useHistory();
 
-  const hashtag = match?.params?.hashtag || "";
-
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [hashtagCounts, setHashtagCounts] = useState(null);
-
-  const data = {
-    searchTerm: hashtag || "bitclout",
-  };
-
-  const options = {
-    params: data,
-    paramsSerializer: (params) =>
-      Object.entries(Object.assign({}, params))
-        .map(([key, value]) => `${key}=${value}`)
-        .join("&"),
-  };
-
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get(endPoints.hashtags, options)
-      .then((res) => {
-        const { data } = res;
-        const posts = data.hashtags.map(({ post }) => post);
-        setIsLoading(false);
-        setPosts(posts);
-      })
-      .catch((err) => console.error(err?.response?.data?.message));
-
-    axios
-      .get(endPoints.getHashtagFrequency, { params: data })
-      .then(({ data }) => setHashtagCounts(data.hashtagLength))
-      .catch((err) => console.log(err));
-  }, [match?.params?.hashtag]);
+    if (userPublicKey)
+      axios
+        .get(endPoints.hashtags, {
+          params: { PublicKeyBase58Check: userPublicKey },
+        })
+        .then(({ data: { hashtags } }) => {
+          setPosts([...makePosts(hashtags)]);
+          setHastagsFound([...getHashtags(hashtags)]);
+        })
+        .catch((err) => console.log(err));
+  }, [userPublicKey]);
 
   return (
-    <div className="HashTag">
-      <div className="HashTag__leftSidebar">
+    <div className="Analyse">
+      <div className="Analyse__leftSidebar">
         <Card body={CommunitiesCardBody} />
         <Card body={MyListsCardBody} />
       </div>
 
-      <div className="HashTag__middleArea">
-        {/* <CreatePost />
-         */}
-        <h1 className="HashTag__pageLabel">{`#${hashtag}`}</h1>
-        <p style={{ marginTop: "-1rem" }}>
-          {hashtagCounts ? `${hashtagCounts} posts with ${hashtag}` : null}{" "}
-        </p>
-        {isLoading ? <Loader /> : <Posts posts={posts} />}
+      <div className="Analyse__middleArea">
+        <h1>Profile Analysis</h1>
+        <AnalyseInput onSubmit={onAnalyseButtonClick} />
+        <br />
+        <h4>hashtags Found</h4>
+        <p> {hastagsFound?.map((hashtag) => `#${hashtag} `)} </p>
+        <br />
+
+        {userPublicKey ? (
+          <>{posts ? <Posts posts={posts} /> : <Loader />} </>
+        ) : (
+          <div className="Posts__emptyMessage">
+            <p className="Posts__emptySmiley"> :&#47; </p>
+            <span>Enter a user code of a user to get started</span>
+          </div>
+        )}
       </div>
 
-      <div className="HashTag__rightSidebar">
+      <div className="Analyse__rightSidebar">
         <TrendingHashtagsCardBody />
         <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
       </div>
@@ -302,4 +296,10 @@ function HashTag({ match }) {
   );
 }
 
-export default HashTag;
+export default Analyse;
+
+// previous middle area comps
+
+// <CreatePost />
+// <Tabs tabNo={tabNo} setTab={setTab} />
+// <TabView tab={tabNo} />

@@ -112,6 +112,15 @@ const Post = ({ post }) => {
 
 function Posts({ posts }) {
   history = useHistory();
+
+  const removeDuplicatePosts = (datas) => {
+    return datas.filter((item, index, arr) => {
+      const current = arr.map((item) => item.PostHashHex);
+      return index === current.indexOf(item.PostHashHex);
+    });
+  };
+
+  posts = removeDuplicatePosts(posts);
   return (
     <div className="Posts">
       {posts.length > 0 ? (
@@ -119,7 +128,7 @@ function Posts({ posts }) {
       ) : (
         <div className="Posts__emptyMessage">
           <p className="Posts__emptySmiley"> :&#10090; </p>
-          <span>Hey, You have no posts yet</span>
+          <span>Hey, there is no posts yet</span>
         </div>
       )}
     </div>

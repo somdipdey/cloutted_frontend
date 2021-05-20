@@ -1,0 +1,18 @@
+.AnalyseInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  &__inputWrapper {
+    margin: 2rem;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    min-width: 40%;
+    border-radius: 15px;
+    padding: 0 0.75rem;
+    box-shadow: 2px 2px 15px #cccccc;
+  }
+}
