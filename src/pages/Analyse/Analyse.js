@@ -243,25 +243,25 @@ function Analyse() {
 
   const [posts, setPosts] = useState(null);
 
-  const [userPublicKey, setUserPublicKey] = useState(null);
-  const [hastagsFound, setHastagsFound] = useState([]);
+  const [username, setUsername] = useState(null);
+  const [hastagsFound, setHastagsFound] = useState(null);
 
-  const onAnalyseButtonClick = (key) => setUserPublicKey(key);
+  const onAnalyseButtonClick = (key) => setUsername(key);
 
   history = useHistory();
 
   useEffect(() => {
-    if (userPublicKey)
+    if (username)
       axios
         .get(endPoints.hashtags, {
-          params: { PublicKeyBase58Check: userPublicKey },
+          params: { Username: username },
         })
         .then(({ data: { hashtags } }) => {
           setPosts([...makePosts(hashtags)]);
           setHastagsFound([...getHashtags(hashtags)]);
         })
         .catch((err) => console.log(err));
-  }, [userPublicKey]);
+  }, [username]);
 
   return (
     <div className="Analyse">
@@ -274,11 +274,11 @@ function Analyse() {
         <h1>Profile Analysis</h1>
         <AnalyseInput onSubmit={onAnalyseButtonClick} />
         <br />
-        <h4>hashtags Found</h4>
+        <h4>{hastagsFound?.length != 0 && "hashtags Found"}</h4>
         <p> {hastagsFound?.map((hashtag) => `#${hashtag} `)} </p>
         <br />
 
-        {userPublicKey ? (
+        {username ? (
           <>{posts ? <Posts posts={posts} /> : <Loader />} </>
         ) : (
           <div className="Posts__emptyMessage">
