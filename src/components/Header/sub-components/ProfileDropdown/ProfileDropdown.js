@@ -24,30 +24,33 @@ function ProfileDropdown({ user }) {
   };
 
   return (
-    <div className="ProfileDropdown">
-      <div className="ProfileDropdown__avatar">
-        {user?.ProfilePic ? (
-          <img alt="" src={user?.ProfilePic} />
-        ) : (
-          <Skeleton
-            variant="rect"
-            height="100%"
-            width="100%"
-            animation="wave"
-          />
-        )}
-      </div>
+    <>
       <div
-        className="ProfileDropdown__name"
+        className="ProfileDropdown"
         aria-controls="profile-menu"
         aria-haspopup="true"
         onClick={handleClick}
       >
-        {user?.Username ? (
-          user?.Username
-        ) : (
-          <Skeleton variant="rect" animation="wave" width={150} />
-        )}
+        <div className="ProfileDropdown__avatar">
+          {user?.ProfilePic ? (
+            <img alt="" src={user?.ProfilePic} />
+          ) : (
+            <Skeleton
+              variant="rect"
+              height="100%"
+              width="100%"
+              animation="wave"
+            />
+          )}
+        </div>
+        <div className="ProfileDropdown__name">
+          {user?.Username ? (
+            user?.Username
+          ) : (
+            <Skeleton variant="rect" animation="wave" width={150} />
+          )}
+        </div>
+        <ExpandMoreRoundedIcon />
       </div>
       <Menu
         id="profile-menu"
@@ -55,11 +58,12 @@ function ProfileDropdown({ user }) {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        transformOrigin={{ vertical: "top", horizontal: "center" }}
       >
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
-      <ExpandMoreRoundedIcon />
-    </div>
+    </>
   );
 }
 
