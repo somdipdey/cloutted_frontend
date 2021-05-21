@@ -8,7 +8,6 @@ import TypeForm from "./pages/TypeForm/TypeForm";
 import HashTag from "./pages/HashTag/HashTag";
 import Auth from "./auth_layer/components/Auth/Auth";
 import { useStateValue } from "./data_layer/store";
-import { useEffect, useState } from "react";
 import Analyse from "./pages/Analyse/Analyse";
 
 const ClouttedApp = () => (
@@ -49,8 +48,7 @@ const ClouttedApp = () => (
 );
 
 function App() {
-  const [{ user }, _] = useStateValue();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [{ user }] = useStateValue();
 
   // useEffect(() => {
   //   setIsAuthenticated(!!user);

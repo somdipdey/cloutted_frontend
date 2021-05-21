@@ -14,11 +14,11 @@ import clouttedlogo from "../../assets/stub/favicon.png";
 import { endPoints } from "../../config/api";
 
 // components
-import CreatePost from "../../components/CreatePost/CreatePost";
+// import CreatePost from "../../components/CreatePost/CreatePost";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Posts from "./sub-components/Posts/Posts";
-import CircularProgress from "@material-ui/core/CircularProgress";
+// import CircularProgress from "@material-ui/core/CircularProgress";
 
 // icons
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
@@ -107,37 +107,18 @@ const TopCommunities = [
   },
 ];
 
-const TrendingHashtags = [
-  { title: "#Cloutted", onclickFunction: () => history?.push("/") },
-  {
-    title: "#BitCloutMadeMeDoIt",
-    onclickFunction: () => history?.push("/"),
-  },
-  { title: "#Technology", onclickFunction: () => history?.push("/hastags") },
-  {
-    title: "#Community",
-    onclickFunction: () => history?.push("/"),
-  },
-  {
-    title: "#Memes",
-    onclickFunction: () => history?.push("/"),
-  },
-];
-
 const genImg = () => (Math.random() * 10 > 4 ? clouttedlogo : clouttedlogo);
 
 const Tile = ({ title, onclickFunction, imgSrc }) =>
   String({ title }.title).localeCompare("My Family") ? (
     <div className="card__tile" onClick={() => onclickFunction?.()}>
       <img className="card__tileAvatar" alt="" src={imgSrc || genImg()} />{" "}
-      <a>{title}</a>
+      {title}
     </div>
   ) : (
     <div className="card__tile" onClick={() => onclickFunction?.()}>
       <img className="card__tileAvatar" alt="" src={imgSrc || genImg()} />{" "}
-      <a>
-        {title} <LockIcon fontSize="small" />
-      </a>
+      {title} <LockIcon fontSize="small" />
     </div>
   );
 

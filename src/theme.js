@@ -1,5 +1,4 @@
 import { createMuiTheme } from "@material-ui/core";
-import { grey } from "@material-ui/core/colors";
 
 const theme = createMuiTheme({
   palette: {
@@ -44,23 +43,23 @@ const MuiOutlinedInput = {
   },
 };
 
-const MuiPopover = {
-  paper: {
-    borderRadius: "15px",
-  },
-};
+// const MuiPopover = {
+//   paper: {
+//     borderRadius: "15px",
+//   },
+// };
 
-const MuiSelect = {
-  root: {
-    backgroundColor: grey[100],
-  },
-  outlined: {
-    borderRadius: "15px",
-  },
-  select: {
-    borderRadius: "15px",
-  },
-};
+// const MuiSelect = {
+//   root: {
+//     backgroundColor: grey[100],
+//   },
+//   outlined: {
+//     borderRadius: "15px",
+//   },
+//   select: {
+//     borderRadius: "15px",
+//   },
+// };
 
 theme.props = {};
 

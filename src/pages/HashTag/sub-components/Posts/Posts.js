@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Posts.scss";
 import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
@@ -10,9 +10,6 @@ import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReactTooltip from "react-tooltip";
-import { useHistory } from "react-router";
-
-let history;
 
 const Liker = ({ likes, isLiked, likeClickedHandler }) => (
   <div className="Posts__postLikeWrap">
@@ -25,7 +22,11 @@ const Liker = ({ likes, isLiked, likeClickedHandler }) => (
 
 const UserInfoRow = ({ user, postCategory }) => (
   <div className="Posts__user">
-    <a href={`https://www.bitclout.com/u/${user?.Username}`} target="_blank">
+    <a
+      href={`https://www.bitclout.com/u/${user?.Username}`}
+      target="_blank"
+      rel="noreferrer"
+    >
       <div className="Posts__userInfo">
         <div className="Posts__userAvatar">
           <img src={user?.ProfilePic || "/emptyPic.png"} alt="" />
@@ -41,7 +42,7 @@ const UserInfoRow = ({ user, postCategory }) => (
         </div>
         <div className="Posts__userValue" style={{ display: "none" }}>
           {`~$${user?.value || 0}`}
-          <a>Buy</a>
+          Buy
         </div>
       </div>
     </a>
@@ -59,6 +60,7 @@ const PostsRow = ({ post }) => (
     className="PostsRow__anchor"
     href={`https://bitclout.com/posts/${post?.PostHashHex}`}
     target="_blank"
+    rel="noreferrer"
   >
     <div className="PostsRow">
       <div className="PostsRow__body">{post?.Body}</div>
@@ -111,8 +113,6 @@ const Post = ({ post }) => {
 };
 
 function Posts({ posts }) {
-  history = useHistory();
-
   const removeDuplicatePosts = (datas) => {
     return datas.filter((item, index, arr) => {
       const current = arr.map((item) => item.PostHashHex);

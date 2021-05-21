@@ -6,7 +6,7 @@ import clouttedlogo from "../../assets/stub/favicon.png";
 
 import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import LockIcon from "@material-ui/icons/Lock";
-import CreatePost from "../../components/CreatePost/CreatePost";
+// import CreatePost from "../../components/CreatePost/CreatePost";
 // import Tabs from "./sub-components/Tabs/Tabs";
 // import TabView from "./sub-components/TabView/TabView";
 import Button from "../../components/Button/Button";
@@ -100,37 +100,18 @@ const TopCommunities = [
   },
 ];
 
-const TrendingHashtags = [
-  { title: "#Cloutted", onclickFunction: () => history?.push("/") },
-  {
-    title: "#BitCloutMadeMeDoIt",
-    onclickFunction: () => history?.push("/"),
-  },
-  { title: "#Technology", onclickFunction: () => history?.push("/hastags") },
-  {
-    title: "#Community",
-    onclickFunction: () => history?.push("/"),
-  },
-  {
-    title: "#Memes",
-    onclickFunction: () => history?.push("/"),
-  },
-];
-
 const genImg = () => (Math.random() * 10 > 4 ? clouttedlogo : clouttedlogo);
 
 const Tile = ({ title, onclickFunction, imgSrc }) =>
   String({ title }.title).localeCompare("My Family") ? (
     <div className="card__tile" onClick={() => onclickFunction?.()}>
       <img className="card__tileAvatar" alt="" src={imgSrc || genImg()} />{" "}
-      <a>{title}</a>
+      {title}
     </div>
   ) : (
     <div className="card__tile" onClick={() => onclickFunction?.()}>
       <img className="card__tileAvatar" alt="" src={imgSrc || genImg()} />{" "}
-      <a>
-        {title} <LockIcon fontSize="small" />
-      </a>
+      {title} <LockIcon fontSize="small" />
     </div>
   );
 
@@ -234,7 +215,7 @@ const TopCommunitiesCardBody = () => (
 function Homepage() {
   // const [tabNo, setTabNo] = useState(0); // for tabs
 
-  const [{ user }, _] = useStateValue();
+  const [{ user }] = useStateValue();
 
   const [posts, setPosts] = useState(null);
 
@@ -249,7 +230,7 @@ function Homepage() {
         setPosts([...posts.filter(({ Body }) => Body)]);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [user]);
 
   // const setTab = (idx) => setTabNo(idx); // for tabs
 

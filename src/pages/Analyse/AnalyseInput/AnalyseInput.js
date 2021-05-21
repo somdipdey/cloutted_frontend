@@ -2,7 +2,6 @@ import { TextField } from "@material-ui/core";
 import { Autocomplete } from "@material-ui/lab";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
 import Button from "../../../components/Button/Button";
 import { endPoints } from "../../../config/api";
 
@@ -11,26 +10,24 @@ import "./AnalyseInput.scss";
 function AnalyseInput({ onSubmit }) {
   const [inputText, setInputText] = useState("");
   const [open, setOpen] = useState(false);
-  const [firstLoad, setFirstLoad] = useState(true);
   const [isLoadingFromApi, setIsLoadingFromApi] = useState(true);
   const [options, setOptions] = useState([]);
   const loading = (open && options.length === 0) || isLoadingFromApi;
 
-  const history = useHistory();
   const populateOptions = async (newVal = "") => {
     setIsLoadingFromApi(true);
-    const response = await axios.get(endPoints.hashtagtrends, {
-      params: { searchKey: newVal },
+    const response = await axios.get(endPoints.users, {
+      params: { Username: newVal },
     });
 
     const {
-      data: { hashtagTrends: hashtags },
+      data: { users },
     } = response;
 
-    if (hashtags.length === 0) {
+    if (users.length === 0) {
       setIsLoadingFromApi(false);
     }
-    setOptions(hashtags);
+    setOptions(users);
     setIsLoadingFromApi(false);
   };
 
@@ -40,10 +37,6 @@ function AnalyseInput({ onSubmit }) {
     }
 
     populateOptions();
-
-    // if (firstLoad) {
-    //   setFirstLoad(false);
-    // }
   }, [open]);
 
   useEffect(() => {
@@ -61,9 +54,8 @@ function AnalyseInput({ onSubmit }) {
             console.log(newValue);
           }}
           style={{ width: "100%" }}
-          renderOption={(option) => option}
+          renderOption={(option) => option.Username}
           freeSolo
-          clearOnBlur
           clearOnEscape
           open={open}
           onOpen={() => setOpen(true)}
@@ -74,12 +66,15 @@ function AnalyseInput({ onSubmit }) {
             setInputText(newInputValue);
             populateOptions(newInputValue);
           }}
-          options={["somdipdey", "sumansaha"]}
+          options={options}
+          getOptionLabel={(option) => option.Username}
           loading={loading}
           loadingText={
-            !isLoadingFromApi && !firstLoad && options.length === 0
+            !isLoadingFromApi && options.length === 0
               ? "No matching results"
-              : "Loading users..."
+              : inputText.length > 1
+              ? "Loading users..."
+              : "Start typing..."
           }
           renderInput={(params) => (
             <TextField
