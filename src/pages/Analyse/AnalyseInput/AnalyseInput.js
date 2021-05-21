@@ -51,7 +51,7 @@ function AnalyseInput({ onSubmit }) {
           id="username-search"
           onChange={(e, newValue) => {
             e?.preventDefault();
-            console.log(newValue);
+            setInputText(newValue);
           }}
           style={{ width: "100%" }}
           renderOption={(option) => option.Username}

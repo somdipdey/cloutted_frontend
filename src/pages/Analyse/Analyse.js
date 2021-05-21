@@ -274,7 +274,12 @@ function Analyse() {
         <h1>Profile Analysis</h1>
         <AnalyseInput onSubmit={onAnalyseButtonClick} />
         <br />
-        <h4>{hastagsFound?.length != 0 && "hashtags Found"}</h4>
+        <h4>
+          {hastagsFound?.length != 0 &&
+            `${hastagsFound?.length} hashtags found`}
+          <br />
+          <br />
+        </h4>
         <p> {hastagsFound?.map((hashtag) => `#${hashtag} `)} </p>
         <br />
 
