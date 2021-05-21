@@ -19,6 +19,7 @@ function ProfileDropdown({ user }) {
   };
 
   const handleLogout = () => {
+    localStorage.removeItem("pubKey");
     handleClose();
     dispatch({ type: "SET_USER", payload: null });
   };

@@ -27,6 +27,7 @@ export default function launchLoginWindow(setPublicKey) {
             setPublicKey(user);
             const userPayload = event.data.payload.users[user];
             // console.log(userPayload);
+            localStorage.setItem("pubKey", user);
             identityWindow.close();
           }
         }

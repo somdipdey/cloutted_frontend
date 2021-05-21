@@ -9,6 +9,7 @@ import HashTag from "./pages/HashTag/HashTag";
 import Auth from "./auth_layer/components/Auth/Auth";
 import { useStateValue } from "./data_layer/store";
 import Analyse from "./pages/Analyse/Analyse";
+import { useEffect, useState } from "react";
 
 const ClouttedApp = () => (
   <>
@@ -48,11 +49,20 @@ const ClouttedApp = () => (
 );
 
 function App() {
-  const [{ user }] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
-  // useEffect(() => {
-  //   setIsAuthenticated(!!user);
-  // }, [user]);
+  useEffect(() => {
+    if (!user) {
+      const userKey = localStorage.getItem("pubKey");
+
+      if (userKey) {
+        dispatch({
+          type: "SET_USER",
+          payload: { PublicKeyBase58Check: userKey },
+        });
+      }
+    }
+  }, [user]);
 
   return (
     <Router>

@@ -25,7 +25,6 @@ export default function launchLogout(publicKey, setPublicKey) {
           if (event.data.method === "login") {
             publicKey = null;
             setPublicKey(publicKey);
-
             identityWindow.close();
           }
         }
