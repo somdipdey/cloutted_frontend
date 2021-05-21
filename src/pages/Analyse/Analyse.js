@@ -283,7 +283,7 @@ function Analyse() {
         ) : (
           <div className="Posts__emptyMessage">
             <p className="Posts__emptySmiley"> :&#47; </p>
-            <span>Enter a user code of a user to get started</span>
+            <span>Enter a username to get started</span>
           </div>
         )}
       </div>

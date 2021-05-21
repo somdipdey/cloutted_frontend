@@ -82,12 +82,12 @@ function AnalyseInput({ onSubmit }) {
               value={inputText}
               variant="outlined"
               style={{ width: "400px" }}
-              placeholder="Enter user code"
+              placeholder="Enter username"
             />
           )}
         />
       </div>
-      <Button buttonText="Analyse" onClick={() => console.log?.(inputText)} />
+      <Button buttonText="Analyse" onClick={() => onSubmit?.(inputText)} />
     </div>
   );
 }
