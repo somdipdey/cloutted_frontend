@@ -21,7 +21,7 @@ function SearchBar() {
   const populateOptions = async (newVal = "") => {
     setIsLoadingFromApi(true);
     const response = await axios.get(endPoints.hashtagtrends, {
-      params: { searchKey: newVal },
+      params: { searchTerm: newVal },
     });
 
     const {

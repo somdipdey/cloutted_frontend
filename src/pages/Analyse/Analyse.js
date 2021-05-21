@@ -275,7 +275,8 @@ function Analyse() {
         <AnalyseInput onSubmit={onAnalyseButtonClick} />
         <br />
         <h4>
-          {hastagsFound?.length != 0 &&
+          {hastagsFound &&
+            hastagsFound?.length != 0 &&
             `${hastagsFound?.length} hashtags found`}
           <br />
           <br />
