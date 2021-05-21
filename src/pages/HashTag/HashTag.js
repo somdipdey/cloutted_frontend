@@ -269,9 +269,10 @@ function HashTag({ match }) {
         {/* <CreatePost />
          */}
         <h1 className="HashTag__pageLabel">{`#${hashtag}`}</h1>
+        <br />
         <p style={{ marginTop: "-1rem" }}>
-          {hashtagCounts
-            ? `${hashtagCounts} posts ${hashtag && `with ${hashtag}`}`
+          {!isLoading && posts?.length
+            ? `${posts.length} posts ${hashtag && `with ${hashtag}`}`
             : null}
         </p>
         {isLoading ? <Loader /> : <Posts posts={posts} />}

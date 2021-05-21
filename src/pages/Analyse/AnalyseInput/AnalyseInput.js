@@ -54,7 +54,7 @@ function AnalyseInput({ onSubmit }) {
             setInputText(newValue);
           }}
           style={{ width: "100%" }}
-          renderOption={(option) => option.Username}
+          renderOption={(option) => option?.Username}
           freeSolo
           clearOnEscape
           open={open}
@@ -67,10 +67,10 @@ function AnalyseInput({ onSubmit }) {
             populateOptions(newInputValue);
           }}
           options={options}
-          getOptionLabel={(option) => option.Username}
+          getOptionLabel={(option) => option?.Username}
           loading={loading}
           loadingText={
-            !isLoadingFromApi && options.length === 0
+            !isLoadingFromApi && options?.length === 0
               ? "No matching results"
               : inputText.length > 1
               ? "Loading users..."
