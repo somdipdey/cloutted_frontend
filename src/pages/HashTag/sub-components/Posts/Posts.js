@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Posts.scss";
 import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
@@ -10,6 +10,8 @@ import MoreVertOutlinedIcon from "@material-ui/icons/MoreVertOutlined";
 import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReactTooltip from "react-tooltip";
+
+import Parser from "html-react-parser";
 
 const Liker = ({ likes, isLiked, likeClickedHandler }) => (
   <div className="Posts__postLikeWrap">
@@ -40,8 +42,11 @@ const UserInfoRow = ({ user, postCategory }) => (
           ) : null}
           <ReactTooltip data-id="verified-tip" effect="float" />
         </div>
-        <div className="Posts__userValue" style={{ display: "none" }}>
-          {`~$${user?.value || 0}`}
+        <div className="Posts__userValue">
+          {`~$${
+            parseFloat(user?.CoinPriceBitCloutNanos / 1000000000).toFixed(2) ||
+            0
+          }`}
           Buy
         </div>
       </div>
@@ -63,7 +68,7 @@ const PostsRow = ({ post }) => (
     rel="noreferrer"
   >
     <div className="PostsRow">
-      <div className="PostsRow__body">{post?.Body}</div>
+      <div className="PostsRow__body">{Parser(post?.Body)}</div>
       <div className="PostsRow__actions" style={{ display: "none" }}>
         <div className="PostsRow__actionsComment">
           <ChatBubbleOutlineRoundedIcon />
@@ -111,8 +116,25 @@ const Post = ({ post }) => {
     </div>
   );
 };
+const hashtagRegex = /#\w+/g;
+
+const highlightHashtags = (posts) =>
+  posts.map((post) => {
+    const newBody = post.Body.split(" ")
+      .map((word) => {
+        if (hashtagRegex.test(word))
+          return `<span class="hashtag"> ${word} </span>`;
+        return word;
+      })
+      .filter(Boolean)
+      .join(" ");
+    post.Body = newBody;
+    return post;
+  });
 
 function Posts({ posts }) {
+  const [displayedPosts, setDisplayedPosts] = useState([]);
+
   const removeDuplicatePosts = (datas) => {
     return datas.filter((item, index, arr) => {
       const current = arr.map((item) => item.PostHashHex);
@@ -120,11 +142,17 @@ function Posts({ posts }) {
     });
   };
 
-  posts = removeDuplicatePosts(posts);
+  useEffect(() => {
+    let newPosts = removeDuplicatePosts(posts);
+    newPosts = highlightHashtags(newPosts);
+
+    setDisplayedPosts(newPosts);
+  }, [posts]);
+
   return (
     <div className="Posts">
       {posts.length > 0 ? (
-        posts?.map((post, idx) => <Post key={idx} post={post} />)
+        displayedPosts?.map((post, idx) => <Post key={idx} post={post} />)
       ) : (
         <div className="Posts__emptyMessage">
           <p className="Posts__emptySmiley"> :&#10090; </p>

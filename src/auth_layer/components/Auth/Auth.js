@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import launchLoginWindow from "./auth_scripts/login";
 import "./Auth.scss";
-import launchLogoutWindow from "./auth_scripts/logout";
 import { useStateValue } from "../../../data_layer/store";
 import Button from "../../../components/Button/Button";
 
