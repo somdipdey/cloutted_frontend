@@ -46,8 +46,8 @@ const UserInfoRow = ({ user, postCategory }) => (
           {`~$${
             parseFloat(user?.CoinPriceBitCloutNanos / 1000000000).toFixed(2) ||
             0
-          }`}
-          Buy
+          } `}
+          <span className="buy_anchortext">Buy</span>
         </div>
       </div>
     </a>
@@ -68,6 +68,11 @@ const PostsRow = ({ post }) => (
     rel="noreferrer"
   >
     <div className="PostsRow">
+      {post?.ImageURLs?.length > 0 && (
+        <div className="PostsRow__image">
+          <img alt="" src={post?.ImageURLs[0]} />
+        </div>
+      )}
       <div className="PostsRow__body">{Parser(post?.Body)}</div>
       <div className="PostsRow__actions" style={{ display: "none" }}>
         <div className="PostsRow__actionsComment">

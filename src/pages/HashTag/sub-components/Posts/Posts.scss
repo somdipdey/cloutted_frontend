@@ -28,10 +28,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    margin: 1rem 0;
+    padding: 2rem;
+    margin: 2rem 0;
     position: relative;
     box-shadow: 1px 1px 12px rgba(black, 0.1);
+
+    &:hover {
+      cursor: pointer;
+      box-shadow: 1px 1px 12px rgba(black, 0.2);
+    }
   }
 
   &__postMain {
@@ -85,12 +90,14 @@
   }
 
   &__userAvatar {
-    --length: 40px;
+    --length: 4rem;
     height: var(--length);
     width: var(--length);
     border-radius: 10px;
     overflow: hidden;
     background-color: #fff;
+    border: 0.1px solid rgba(#000, 0.1);
+
     & > img {
       width: 100%;
       height: 100%;
@@ -138,10 +145,34 @@
 
 .PostsRow {
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   &__anchor {
+    width: 100%;
+
     &:hover {
       font-weight: normal;
+    }
+  }
+
+  &__image {
+    max-height: 40rem;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    margin: 4rem;
+    border-radius: 15px;
+
+    & > img {
+      max-height: 40rem;
+      max-width: 95%;
+      object-fit: contain;
+      vertical-align: middle;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 2px #fff, 0 0 2px rgba(#000, 0.2);
     }
   }
 
@@ -162,10 +193,15 @@
   }
 
   &__body {
-    margin: 1rem;
+    margin: 2rem 0;
     text-align: left;
     font-size: 1.1rem;
     overflow-wrap: break-word;
-    width: 90%;
+    width: 95%;
   }
+}
+
+.buy_anchortext {
+  margin: 0 1ch;
+  color: blue;
 }
