@@ -254,7 +254,7 @@ function HashTag({ match }) {
         .join("&"),
   };
   useEffect(() => {
-    if (hashtag != "view-all") {
+    if (hashtag !== "view-all") {
       setIsLoading(true);
       axios
         .get(endPoints.hashtags, options)

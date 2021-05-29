@@ -30,7 +30,7 @@ function ViewAll() {
 
   return (
     <div className="ViewAll">
-      {hashtrends.length != 0 ? (
+      {hashtrends.length !== 0 ? (
         hashtrends?.map(({ hashtag, count }) => (
           <ViewTile hashtag={hashtag} count={count} />
         ))

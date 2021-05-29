@@ -11,7 +11,9 @@ import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReactTooltip from "react-tooltip";
 
-import Parser from "html-react-parser";
+import Hashtags from "react-highlight-hashtags";
+
+// import Parser from "html-react-parser";
 
 const Liker = ({ likes, isLiked, likeClickedHandler }) => (
   <div className="Posts__postLikeWrap">
@@ -74,7 +76,9 @@ const PostsRow = ({ post }) => (
             <img alt="" src={post?.ImageURLs[0]} />
           </div>
         )}
-        <div className="PostsRow__body">{Parser(post?.Body)}</div>
+        <div className="PostsRow__body">
+          <Hashtags>{post?.Body}</Hashtags>
+        </div>
         <div className="PostsRow__actions" style={{ display: "none" }}>
           <div className="PostsRow__actionsComment">
             <ChatBubbleOutlineRoundedIcon />
@@ -126,21 +130,21 @@ const Post = ({ post }) => {
     </div>
   );
 };
-const hashtagRegex = /#\w+/g;
+// const hashtagRegex = /#\w+/g;
 
-const highlightHashtags = (posts) =>
-  posts.map((post) => {
-    const newBody = post.Body.split(" ")
-      .map((word) => {
-        if (hashtagRegex.test(word))
-          return `<span class="hashtag"> ${word} </span>`;
-        return word;
-      })
-      .filter(Boolean)
-      .join(" ");
-    post.Body = newBody;
-    return post;
-  });
+// const highlightHashtags = (posts) =>
+//   posts.map((post) => {
+//     const newBody = post.Body.split(" ")
+//       .map((word) => {
+//         if (hashtagRegex.test(word))
+//           return `<span class="hashtag"> ${word} </span>`;
+//         return word;
+//       })
+//       .filter(Boolean)
+//       .join(" ");
+//     post.Body = newBody;
+//     return post;
+//   });
 
 function Posts({ posts }) {
   const [displayedPosts, setDisplayedPosts] = useState([]);
@@ -154,7 +158,7 @@ function Posts({ posts }) {
 
   useEffect(() => {
     let newPosts = removeDuplicatePosts(posts);
-    newPosts = highlightHashtags(newPosts);
+    // newPosts = highlightHashtags(newPosts);
 
     setDisplayedPosts(newPosts);
   }, [posts]);
