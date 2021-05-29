@@ -48,6 +48,12 @@ function Header() {
       <div className="Header__action" onClick={() => history.push("/")}>
         Home
       </div>
+      <div
+        className="Header__action"
+        onClick={() => history.push("/what-is-cloutted")}
+      >
+        What is cloutted?
+      </div>
       <div className="Header__action" onClick={() => history.push("/analyse")}>
         Analyse hashtags
       </div>

@@ -48,7 +48,7 @@ function TrendingHashtagsCardBody() {
         ))}
         <Button
           buttonText="View All"
-          onClick={() => history?.push("/hashtags")}
+          onClick={() => history?.push("/hashtags/view-all")}
           spaceTop
         />
       </div>

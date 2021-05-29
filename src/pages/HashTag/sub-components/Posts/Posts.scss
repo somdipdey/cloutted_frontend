@@ -199,6 +199,14 @@
     overflow-wrap: break-word;
     width: 95%;
   }
+
+  &__timeStamp {
+    width: 98%;
+    text-align: right;
+    font-style: italic;
+    font-weight: 200;
+    color: #000;
+  }
 }
 
 .buy_anchortext {

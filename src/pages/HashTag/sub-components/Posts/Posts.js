@@ -61,45 +61,50 @@ const UserInfoRow = ({ user, postCategory }) => (
 );
 
 const PostsRow = ({ post }) => (
-  <a
-    className="PostsRow__anchor"
-    href={`https://bitclout.com/posts/${post?.PostHashHex}`}
-    target="_blank"
-    rel="noreferrer"
-  >
-    <div className="PostsRow">
-      {post?.ImageURLs?.length > 0 && (
-        <div className="PostsRow__image">
-          <img alt="" src={post?.ImageURLs[0]} />
+  <>
+    <a
+      className="PostsRow__anchor"
+      href={`https://bitclout.com/posts/${post?.PostHashHex}`}
+      target="_blank"
+      rel="noreferrer"
+    >
+      <div className="PostsRow">
+        {post?.ImageURLs?.length > 0 && (
+          <div className="PostsRow__image">
+            <img alt="" src={post?.ImageURLs[0]} />
+          </div>
+        )}
+        <div className="PostsRow__body">{Parser(post?.Body)}</div>
+        <div className="PostsRow__actions" style={{ display: "none" }}>
+          <div className="PostsRow__actionsComment">
+            <ChatBubbleOutlineRoundedIcon />
+            {post?.Comments}
+          </div>
+          <div className="PostsRow__actionsReclout">
+            <CachedOutlinedIcon />
+            {post?.RecloutCount}
+          </div>
+          <div className="PostsRow__actionsShare">
+            <ShareOutlinedIcon />
+          </div>
+          <div className="PostsRow__actionsSave">
+            {post?.isSaved ? (
+              <BookmarkOutlinedIcon />
+            ) : (
+              <BookmarkBorderOutlinedIcon />
+            )}
+          </div>
+          <div className="PostsRow__actionsMore">
+            <MoreVertOutlinedIcon />
+          </div>
+          <div className="PostsRow__postTime">{post?.postTime}</div>
         </div>
-      )}
-      <div className="PostsRow__body">{Parser(post?.Body)}</div>
-      <div className="PostsRow__actions" style={{ display: "none" }}>
-        <div className="PostsRow__actionsComment">
-          <ChatBubbleOutlineRoundedIcon />
-          {post?.Comments}
-        </div>
-        <div className="PostsRow__actionsReclout">
-          <CachedOutlinedIcon />
-          {post?.RecloutCount}
-        </div>
-        <div className="PostsRow__actionsShare">
-          <ShareOutlinedIcon />
-        </div>
-        <div className="PostsRow__actionsSave">
-          {post?.isSaved ? (
-            <BookmarkOutlinedIcon />
-          ) : (
-            <BookmarkBorderOutlinedIcon />
-          )}
-        </div>
-        <div className="PostsRow__actionsMore">
-          <MoreVertOutlinedIcon />
-        </div>
-        <div className="PostsRow__postTime">{post?.postTime}</div>
       </div>
+    </a>
+    <div className="PostsRow__timeStamp">
+      {new Date(post?.TimestampNanos / 1000000).toLocaleDateString().toString()}
     </div>
-  </a>
+  </>
 );
 
 const Post = ({ post }) => {

@@ -10,6 +10,7 @@ import Auth from "./auth_layer/components/Auth/Auth";
 import { useStateValue } from "./data_layer/store";
 import Analyse from "./pages/Analyse/Analyse";
 import { useEffect, useState } from "react";
+import WhatCloutted from "./pages/WhatCloutted";
 
 const ClouttedApp = () => (
   <>
@@ -43,6 +44,9 @@ const ClouttedApp = () => (
           imgSrc={"/MyLists.JPG"}
           imgCaption="Curate your own feed, customize who you see, and share your lists!"
         />
+      </Route>
+      <Route exact path="/what-is-cloutted">
+        <WhatCloutted />
       </Route>
     </Switch>
   </>

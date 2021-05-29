@@ -25,6 +25,7 @@ import AddRoundedIcon from "@material-ui/icons/AddRounded";
 import LockIcon from "@material-ui/icons/Lock";
 import TrendingHashtagsCardBody from "../../components/TrendingHashtagsCardBody/TrendingHashtagsCardBody";
 import Loader from "../../components/Loader/Loader";
+import ViewAll from "./sub-components/ViewAll/ViewAll";
 
 let history;
 
@@ -219,6 +220,19 @@ const TopCommunitiesCardBody = () => (
   </div>
 );
 
+const PostView = ({ hashtag, posts, isLoading }) => (
+  <>
+    <h1 className="HashTag__pageLabel">{`#${hashtag}`}</h1>
+    <br />
+    <p style={{ marginTop: "-1rem" }}>
+      {!isLoading && posts?.length
+        ? `${posts.length} posts ${hashtag && `with ${hashtag}`}`
+        : null}
+    </p>
+    {isLoading ? <Loader /> : <Posts posts={posts} />}
+  </>
+);
+
 function HashTag({ match }) {
   history = useHistory();
 
@@ -239,23 +253,24 @@ function HashTag({ match }) {
         .map(([key, value]) => `${key}=${value}`)
         .join("&"),
   };
-
   useEffect(() => {
-    setIsLoading(true);
-    axios
-      .get(endPoints.hashtags, options)
-      .then((res) => {
-        const { data } = res;
-        const posts = data.hashtags.map(({ post }) => post);
-        setIsLoading(false);
-        setPosts(posts);
-      })
-      .catch((err) => console.error(err?.response?.data?.message));
+    if (hashtag != "view-all") {
+      setIsLoading(true);
+      axios
+        .get(endPoints.hashtags, options)
+        .then((res) => {
+          const { data } = res;
+          const posts = data.hashtags.map(({ post }) => post);
+          setIsLoading(false);
+          setPosts(posts);
+        })
+        .catch((err) => console.error(err?.response?.data?.message));
 
-    axios
-      .get(endPoints.getHashtagFrequency, { params: data })
-      .then(({ data }) => setHashtagCounts(data.hashtagLength))
-      .catch((err) => console.log(err));
+      axios
+        .get(endPoints.getHashtagFrequency, { params: data })
+        .then(({ data }) => setHashtagCounts(data.hashtagLength))
+        .catch((err) => console.log(err));
+    }
   }, [match?.params?.hashtag]);
 
   return (
@@ -266,16 +281,11 @@ function HashTag({ match }) {
       </div>
 
       <div className="HashTag__middleArea">
-        {/* <CreatePost />
-         */}
-        <h1 className="HashTag__pageLabel">{`#${hashtag}`}</h1>
-        <br />
-        <p style={{ marginTop: "-1rem" }}>
-          {!isLoading && posts?.length
-            ? `${posts.length} posts ${hashtag && `with ${hashtag}`}`
-            : null}
-        </p>
-        {isLoading ? <Loader /> : <Posts posts={posts} />}
+        {hashtag === "view-all" ? (
+          <ViewAll />
+        ) : (
+          <PostView hashtag={hashtag} posts={posts} isLoading={isLoading} />
+        )}
       </div>
 
       <div className="HashTag__rightSidebar">
