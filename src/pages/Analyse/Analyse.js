@@ -232,10 +232,13 @@ const TopCommunitiesCardBody = () => (
   </div>
 );
 
-const makePosts = (hashtags) => hashtags.map(({ post }) => post);
+const hashtagRegex =
+  /#(\w+|(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])+)/g;
 
-const getHashtags = (hashtags) =>
-  Array.from(new Set(hashtags.map(({ hashtag }) => hashtag)));
+const getHashtags = (posts) =>
+  Array.from(new Set(posts.map(({ Body }) => Body.match(hashtagRegex))))
+    ?.flat()
+    .filter(Boolean);
 
 function Analyse() {
   // const [tabNo, setTabNo] = useState(0); // for tabs
@@ -253,12 +256,12 @@ function Analyse() {
   useEffect(() => {
     if (username)
       axios
-        .get(endPoints.hashtags, {
+        .get(endPoints.getPostsPerUser, {
           params: { Username: username },
         })
-        .then(({ data: { hashtags } }) => {
-          setPosts([...makePosts(hashtags)]);
-          setHastagsFound([...getHashtags(hashtags)]);
+        .then(({ data: { posts } }) => {
+          setPosts([...posts]);
+          setHastagsFound([...getHashtags(posts)]);
         })
         .catch((err) => console.log(err));
   }, [username]);
@@ -281,7 +284,10 @@ function Analyse() {
           <br />
           <br />
         </h4>
-        <p> {hastagsFound?.map((hashtag) => `#${hashtag} `)} </p>
+        <p>
+          {hastagsFound?.toString()?.replaceAll(",", ", ") ||
+            "No hashtags detected"}{" "}
+        </p>
         <br />
 
         {username ? (
