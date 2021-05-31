@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "http://144.126.138.12:8080";
 const API_BASE_URL = `${BASE_URL}/v1`;
 
 const endPoints = {
