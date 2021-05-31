@@ -21,6 +21,7 @@
     "react-spinners": "^0.10.6",
     "react-tooltip": "^4.2.17",
     "react-typeform-embed": "^0.2.1",
+    "react-wordcloud": "^1.2.7",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

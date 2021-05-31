@@ -20,6 +20,8 @@ import { useStateValue } from "../../data_layer/store";
 import Loader from "../../components/Loader/Loader";
 import AnalyseInput from "./AnalyseInput/AnalyseInput";
 
+import WordCloud from "react-wordcloud";
+
 let history;
 
 const Communities = [
@@ -236,7 +238,11 @@ const hashtagRegex =
   /#(\w+|(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])+)/g;
 
 const getHashtags = (posts) =>
-  Array.from(new Set(posts.map(({ Body }) => Body.match(hashtagRegex))))
+  Array.from(
+    new Set(
+      posts.map(({ Body }) => Body.match(hashtagRegex).map((el) => el.trim()))
+    )
+  )
     ?.flat()
     .filter(Boolean);
 
@@ -247,7 +253,7 @@ function Analyse() {
   const [posts, setPosts] = useState(null);
 
   const [username, setUsername] = useState(null);
-  const [hastagsFound, setHastagsFound] = useState(null);
+  const [hashtagsFound, setHashtagsFound] = useState(null);
 
   const onAnalyseButtonClick = (key) => setUsername(key);
 
@@ -261,7 +267,13 @@ function Analyse() {
         })
         .then(({ data: { posts } }) => {
           setPosts([...posts]);
-          setHastagsFound([...getHashtags(posts)]);
+          setHashtagsFound([...getHashtags(posts)]);
+          // console.log(
+          //   getHashtags(posts)?.map((hashtag) => ({
+          //     text: hashtag,
+          //     value: parseInt(10 + Math.random() * 20),
+          //   }))
+          // );
         })
         .catch((err) => console.log(err));
   }, [username]);
@@ -278,16 +290,41 @@ function Analyse() {
         <AnalyseInput onSubmit={onAnalyseButtonClick} />
         <br />
         <h4>
-          {hastagsFound &&
-            hastagsFound?.length != 0 &&
-            `${hastagsFound?.length} hashtags found`}
+          {hashtagsFound &&
+            hashtagsFound?.length != 0 &&
+            `${hashtagsFound?.length} hashtags found`}
           <br />
           <br />
         </h4>
-        <p>
-          {hastagsFound?.toString()?.replaceAll(",", ", ") ||
-            "No hashtags detected"}{" "}
-        </p>
+        {/* <p>
+          {hashtagsFound?.toString()?.replaceAll(",", ", ") ||
+            (hashtagsFound && "No hashtags detected")}
+        </p> */}
+        <div
+          style={{
+            height: "20vh",
+            backgroundColor: "black",
+            borderRadius: "25px",
+            padding: "1rem",
+          }}
+        >
+          {hashtagsFound && hashtagsFound?.length != 0 && (
+            <WordCloud
+              words={hashtagsFound?.map((hashtag) => ({
+                text: hashtag,
+                value: 12,
+              }))}
+              options={{
+                fontFamily: "monospace",
+                rotations: 0,
+                enableTooltip: false,
+                rotationAngles: [0, 0],
+                colors: ["#98f0d8", "#FFFFFF", "#DDDDDD"],
+                padding: "1rem",
+              }}
+            />
+          )}
+        </div>
         <br />
 
         {username ? (

@@ -70,7 +70,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">{user ? <ClouttedApp /> : <Auth />}</div>
+      <div className="App">{true ? <ClouttedApp /> : <Auth />}</div>
     </Router>
   );
 }
