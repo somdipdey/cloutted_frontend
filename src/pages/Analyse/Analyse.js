@@ -309,10 +309,11 @@ function Analyse() {
             <WordCloud
               words={hashtagsFound?.map((hashtag) => ({
                 text: hashtag,
-                value: 12,
+                value: Math.random() * 2,
               }))}
               options={{
                 fontFamily: "monospace",
+                fontSizes: [10, 14],
                 rotations: 0,
                 enableTooltip: false,
                 rotationAngles: [0, 0],
