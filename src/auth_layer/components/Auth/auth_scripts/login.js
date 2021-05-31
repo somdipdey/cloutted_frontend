@@ -1,4 +1,6 @@
-export default function launchLoginWindow(setPublicKey) {
+import axios from "axios";
+
+export default function launchLoginWindow(setPublicKey, setRedirectUser) {
   const h = 1000;
   const w = 800;
   const y = window.outerHeight / 2 + window.screenY - h / 2;
@@ -23,12 +25,25 @@ export default function launchLoginWindow(setPublicKey) {
 
           //login
           if (event.data.method === "login") {
-            const user = event.data.payload.publicKeyAdded;
-            setPublicKey(user);
-            const userPayload = event.data.payload.users[user];
-            // console.log(userPayload);
-            localStorage.setItem("pubKey", user);
-            identityWindow.close();
+            axios
+              .get("https://sheetdb.io/api/v1/v98ar5krhadiv")
+              .then(({ data: users }) => {
+                const user = event.data.payload.publicKeyAdded;
+                const isAuthorized = users.some(
+                  ({ PublicKeyBase58Check: p }) => p === user
+                );
+
+                console.log(isAuthorized);
+                if (isAuthorized) {
+                  setPublicKey(user);
+                  const userPayload = event.data.payload.users[user];
+                  localStorage.setItem("pubKey", user);
+                } else {
+                  setRedirectUser(true);
+                }
+                identityWindow.close();
+              })
+              .catch((err) => console.log(err));
           }
         }
       }
