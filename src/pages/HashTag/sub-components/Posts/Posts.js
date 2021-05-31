@@ -152,7 +152,7 @@ function Posts({ posts }) {
   const removeDuplicatePosts = (datas) => {
     return datas.filter((item, index, arr) => {
       const current = arr.map((item) => item.PostHashHex);
-      return index === current.indexOf(item.PostHashHex);
+      return index === current.indexOf(item.PostHashHex) && item.Body !== "";
     });
   };
 
@@ -166,7 +166,9 @@ function Posts({ posts }) {
   return (
     <div className="Posts">
       {posts.length > 0 ? (
-        displayedPosts?.map((post, idx) => <Post key={idx} post={post} />)
+        displayedPosts
+          ?.sort((a, b) => a.TimestampNanos - b.TimestampNanos)
+          .map((post, idx) => <Post key={idx} post={post} />)
       ) : (
         <div className="Posts__emptyMessage">
           <p className="Posts__emptySmiley"> :&#10090; </p>

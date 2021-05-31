@@ -18,19 +18,20 @@ function Auth() {
 
   return (
     <div className="Auth">
-      <h1>Welcome to #cloutted</h1>
+      <div className="Auth__welcome">
+        <h1 className="Auth__welcomeText">Welcome to</h1>
+        <div className="Auth__welcomeLogo">
+          <img src="/logo.png" alt="" />
+        </div>
+      </div>
+
       <Button
         spaceTop
         buttonText="Login with Bitclout"
         onClick={() => launchLoginWindow(setKey, setRedirectUser)}
       />
 
-      <Modal
-        open={redirectUser}
-        onClose={() => setRedirectUser(false)}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-      >
+      <Modal open={redirectUser} onClose={() => setRedirectUser(false)}>
         <div
           style={{
             width: "400px",
