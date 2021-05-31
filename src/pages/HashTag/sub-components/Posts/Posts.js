@@ -106,6 +106,8 @@ const PostsRow = ({ post }) => (
       </div>
     </a>
     <div className="PostsRow__timeStamp">
+      {new Date(post?.TimestampNanos / 1000000).toLocaleTimeString().toString()}
+      &nbsp;&nbsp;&nbsp;
       {new Date(post?.TimestampNanos / 1000000).toLocaleDateString().toString()}
     </div>
   </>

@@ -238,11 +238,7 @@ const hashtagRegex =
   /#(\w+|(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])+)/g;
 
 const getHashtags = (posts) =>
-  Array.from(
-    new Set(
-      posts.map(({ Body }) => Body.match(hashtagRegex).map((el) => el.trim()))
-    )
-  )
+  Array.from(new Set(posts.map(({ Body }) => Body.match(hashtagRegex))))
     ?.flat()
     .filter(Boolean);
 
@@ -306,7 +302,7 @@ function Analyse() {
               height: "20vh",
               backgroundColor: "black",
               borderRadius: "25px",
-              padding: "1rem",
+              paddingBottom: "2rem",
             }}
           >
             (
@@ -321,10 +317,9 @@ function Analyse() {
                 enableTooltip: false,
                 rotationAngles: [0, 0],
                 colors: ["#98f0d8", "#FFFFFF", "#DDDDDD"],
-                padding: "1rem",
+                padding: "2rem",
               }}
             />
-            )
           </div>
         )}
         <br />
