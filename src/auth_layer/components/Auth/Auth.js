@@ -44,7 +44,14 @@ function Auth() {
           }}
         >
           <Paper>
-            <div style={{ padding: "2rem" }}>
+            <div
+              style={{
+                padding: "2rem",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
               <p>
                 Sorry, You are no allowed to access this closed beta. Consider
                 signing up.

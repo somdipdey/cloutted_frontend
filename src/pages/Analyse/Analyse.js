@@ -300,15 +300,16 @@ function Analyse() {
           {hashtagsFound?.toString()?.replaceAll(",", ", ") ||
             (hashtagsFound && "No hashtags detected")}
         </p> */}
-        <div
-          style={{
-            height: "20vh",
-            backgroundColor: "black",
-            borderRadius: "25px",
-            padding: "1rem",
-          }}
-        >
-          {hashtagsFound && hashtagsFound?.length != 0 && (
+        {hashtagsFound && hashtagsFound?.length != 0 && (
+          <div
+            style={{
+              height: "20vh",
+              backgroundColor: "black",
+              borderRadius: "25px",
+              padding: "1rem",
+            }}
+          >
+            (
             <WordCloud
               words={hashtagsFound?.map((hashtag) => ({
                 text: hashtag,
@@ -323,8 +324,9 @@ function Analyse() {
                 padding: "1rem",
               }}
             />
-          )}
-        </div>
+            )
+          </div>
+        )}
         <br />
 
         {username ? (

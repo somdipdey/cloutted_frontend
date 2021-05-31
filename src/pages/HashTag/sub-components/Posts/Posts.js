@@ -167,7 +167,7 @@ function Posts({ posts }) {
     <div className="Posts">
       {posts.length > 0 ? (
         displayedPosts
-          ?.sort((a, b) => a.TimestampNanos - b.TimestampNanos)
+          ?.sort((a, b) => b.TimestampNanos - a.TimestampNanos)
           .map((post, idx) => <Post key={idx} post={post} />)
       ) : (
         <div className="Posts__emptyMessage">

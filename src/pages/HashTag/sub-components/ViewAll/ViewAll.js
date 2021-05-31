@@ -23,7 +23,7 @@ function ViewAll() {
   const [hashtrends, setHashtrends] = useState([]);
   useEffect(() => {
     axios
-      .get(endPoints.hashtagtrends, { params: { searchLimit: 20 } })
+      .get(endPoints.hashtagtrends, { params: { searchLimit: 300 } })
       .then(({ data }) => setHashtrends(data.hashtagTrends))
       .catch((err) => console.log(err));
   }, []);
