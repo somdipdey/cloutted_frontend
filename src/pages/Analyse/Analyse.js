@@ -238,9 +238,9 @@ const hashtagRegex =
   /#(\w+|(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])+)/g;
 
 const getHashtags = (posts) =>
-  Array.from(new Set(posts.map(({ Body }) => Body.match(hashtagRegex))))
-    ?.flat()
-    .filter(Boolean);
+  Array.from(
+    new Set(posts.map(({ Body }) => Body.trim().match(hashtagRegex)).flat())
+  ).filter(Boolean);
 
 function Analyse() {
   // const [tabNo, setTabNo] = useState(0); // for tabs
