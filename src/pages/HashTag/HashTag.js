@@ -226,7 +226,7 @@ const PostView = ({ hashtag, posts, isLoading }) => (
     <br />
     <p style={{ marginTop: "-1rem" }}>
       {!isLoading && posts?.length
-        ? `${posts.length} posts ${hashtag && `with ${hashtag}`}`
+        ? `${hashtagCounts} posts ${hashtag && `with ${hashtag}`}`
         : null}
     </p>
     {isLoading ? <Loader /> : <Posts posts={posts} />}
@@ -243,7 +243,7 @@ function HashTag({ match }) {
   const [hashtagCounts, setHashtagCounts] = useState(null);
 
   const data = {
-    searchTerm: hashtag || "bitclout",
+    searchTerm: hashtag || "",
   };
 
   const options = {
