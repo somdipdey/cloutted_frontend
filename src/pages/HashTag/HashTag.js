@@ -220,7 +220,7 @@ const TopCommunitiesCardBody = () => (
   </div>
 );
 
-const PostView = ({ hashtag, posts, isLoading }) => (
+const PostView = ({ hashtag, posts, isLoading, hashtagCounts }) => (
   <>
     <h1 className="HashTag__pageLabel">{`#${hashtag}`}</h1>
     <br />
@@ -284,7 +284,12 @@ function HashTag({ match }) {
         {hashtag === "view-all" ? (
           <ViewAll />
         ) : (
-          <PostView hashtag={hashtag} posts={posts} isLoading={isLoading} />
+          <PostView
+            hashtag={hashtag}
+            posts={posts}
+            isLoading={isLoading}
+            hashtagCounts={hashtagCounts}
+          />
         )}
       </div>
 
