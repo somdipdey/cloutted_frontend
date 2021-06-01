@@ -21,6 +21,10 @@ import Loader from "../../components/Loader/Loader";
 import AnalyseInput from "./AnalyseInput/AnalyseInput";
 
 import WordCloud from "react-wordcloud";
+import { countHashtag_arr } from "../../util/hashtagCounter";
+
+import "tippy.js/dist/tippy.css";
+import "tippy.js/animations/scale.css";
 
 let history;
 
@@ -238,9 +242,9 @@ const hashtagRegex =
   /#(\w+|(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])+)/g;
 
 const getHashtags = (posts) =>
-  Array.from(
-    new Set(posts.map(({ Body }) => Body.trim().match(hashtagRegex)).flat())
-  ).filter(Boolean);
+  Array.from(posts.map(({ Body }) => Body.match(hashtagRegex)))
+    .flat()
+    .filter(Boolean);
 
 function Analyse() {
   // const [tabNo, setTabNo] = useState(0); // for tabs
@@ -251,27 +255,33 @@ function Analyse() {
   const [username, setUsername] = useState(null);
   const [hashtagsFound, setHashtagsFound] = useState(null);
 
-  const onAnalyseButtonClick = (key) => setUsername(key);
+  const [words, setWords] = useState(null);
+
+  const [loading, setLoading] = useState(false);
+
+  const onAnalyseButtonClick = (key) => {
+    setLoading(true);
+    setUsername(key);
+  };
 
   history = useHistory();
 
   useEffect(() => {
-    if (username)
+    if (username) {
+      setLoading(true);
       axios
         .get(endPoints.getPostsPerUser, {
           params: { Username: username },
         })
         .then(({ data: { posts } }) => {
           setPosts([...posts]);
-          setHashtagsFound([...getHashtags(posts)]);
-          // console.log(
-          //   getHashtags(posts)?.map((hashtag) => ({
-          //     text: hashtag,
-          //     value: parseInt(10 + Math.random() * 20),
-          //   }))
-          // );
+          const HashtagsArr = getHashtags(posts);
+          setHashtagsFound([...HashtagsArr]);
+          setWords([...countHashtag_arr(HashtagsArr)]);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => setLoading(false));
+    }
   }, [username]);
 
   return (
@@ -292,33 +302,29 @@ function Analyse() {
           <br />
           <br />
         </h4>
-        {/* <p>
-          {hashtagsFound?.toString()?.replaceAll(",", ", ") ||
-            (hashtagsFound && "No hashtags detected")}
-        </p> */}
-        {hashtagsFound && hashtagsFound?.length != 0 && (
+
+        {words && !loading && (
           <div
             style={{
               height: "20vh",
               backgroundColor: "black",
               borderRadius: "25px",
-              paddingBottom: "2rem",
             }}
           >
-            (
             <WordCloud
-              words={hashtagsFound?.map((hashtag) => ({
-                text: hashtag,
-                value: Math.random() * 2,
-              }))}
+              words={words}
               options={{
                 fontFamily: "monospace",
-                fontSizes: [10, 14],
+                fontSizes: [8, 35],
                 rotations: 0,
-                enableTooltip: false,
+                enableTooltip: true,
                 rotationAngles: [0, 0],
-                colors: ["#98f0d8", "#FFFFFF", "#DDDDDD"],
+                colors: ["#98f0d8", "#FFFFFF", "#AAAAAA"],
                 padding: "2rem",
+              }}
+              callbacks={{
+                getWordTooltip: ({ text, value }) =>
+                  `${text}: ${value} occurrence${value !== 1 ? "s" : ""}`,
               }}
             />
           </div>
@@ -326,7 +332,16 @@ function Analyse() {
         <br />
 
         {username ? (
-          <>{posts ? <Posts posts={posts} /> : <Loader />} </>
+          <>
+            {posts && !loading ? (
+              <Posts posts={posts} />
+            ) : (
+              <>
+                <Loader />
+                <p>Analysing hashtags...</p>
+              </>
+            )}{" "}
+          </>
         ) : (
           <div className="Posts__emptyMessage">
             <p className="Posts__emptySmiley"> :&#47; </p>
