@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Posts.scss";
 import FavoriteBorderRoundedIcon from "@material-ui/icons/FavoriteBorderRounded";
 import FavoriteRoundedIcon from "@material-ui/icons/FavoriteRounded";
@@ -11,6 +11,7 @@ import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReactTooltip from "react-tooltip";
 import { useHistory } from "react-router";
+import get_bitclout_price from "../../../../../../util/getBitcloutPrice";
 
 let history;
 
@@ -32,8 +33,7 @@ const UserInfoRow = ({ user, postCategory }) => (
       <div className="Posts__userName">
         <p>
           <a href={`http://bitclout.com/u/${user.name}`} target="_blank">
-            {" "}
-            {user.name}{" "}
+            {user.name}
           </a>
         </p>
         {user.isVerified ? (
@@ -91,11 +91,15 @@ const PostsRow = ({ post }) => (
   </div>
 );
 
-const Post = ({ post }) => (
+const Post = ({ post, pricefactor }) => (
   <div className="Posts__post">
     <Liker likes={post?.LikeCount} isLiked={post?.isLiked} />
     <div className="Posts__postMain">
-      <UserInfoRow user={post?.owner} postCategory={post.post.postCategory} />
+      <UserInfoRow
+        user={post?.owner}
+        postCategory={post.post.postCategory}
+        pricefactor={pricefactor}
+      />
       <PostsRow post={post} />
     </div>
   </div>
@@ -103,10 +107,11 @@ const Post = ({ post }) => (
 
 function Posts({ posts }) {
   history = useHistory();
+
   return (
     <div className="Posts">
       {posts.map((post) => (
-        <Post post={post} />
+        <Post post={post} pricefactor={bitcloutFactor} />
       ))}
     </div>
   );

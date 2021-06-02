@@ -26,7 +26,7 @@ function WhatCloutted() {
       <iframe
         width="100%"
         height="100%"
-        src="https://www.cloutted.com/home"
+        src="https://cloutted.wixsite.com/my-site/home"
         style={{
           height: "105%",
           width: "100%",

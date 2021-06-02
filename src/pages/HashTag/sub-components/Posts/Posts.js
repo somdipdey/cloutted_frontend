@@ -12,6 +12,7 @@ import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReactTooltip from "react-tooltip";
 
 import Hashtags from "react-highlight-hashtags";
+import get_bitclout_price from "../../../../util/getBitcloutPrice";
 
 // import Parser from "html-react-parser";
 
@@ -24,7 +25,7 @@ const Liker = ({ likes, isLiked, likeClickedHandler }) => (
   </div>
 );
 
-const UserInfoRow = ({ user, postCategory }) => (
+const UserInfoRow = ({ user, postCategory, priceFactor }) => (
   <div className="Posts__user">
     <a
       href={`https://www.bitclout.com/u/${user?.Username}`}
@@ -46,8 +47,9 @@ const UserInfoRow = ({ user, postCategory }) => (
         </div>
         <div className="Posts__userValue">
           {`~$${
-            parseFloat(user?.CoinPriceBitCloutNanos / 1000000000).toFixed(2) ||
-            0
+            parseFloat(
+              (user?.CoinPriceBitCloutNanos * priceFactor) / 1000000000
+            ).toFixed(2) || 0
           } `}
           <span className="buy_anchortext">Buy</span>
         </div>
@@ -113,7 +115,7 @@ const PostsRow = ({ post }) => (
   </>
 );
 
-const Post = ({ post }) => {
+const Post = ({ post, priceFactor }) => {
   const [isLiked, setIsLiked] = useState(false);
 
   const toggleLike = () => setIsLiked(!isLiked);
@@ -126,7 +128,11 @@ const Post = ({ post }) => {
         likeClickedHandler={toggleLike}
       />
       <div className="Posts__postMain">
-        <UserInfoRow user={post?.owner} postCategory={null} />
+        <UserInfoRow
+          user={post?.owner}
+          postCategory={null}
+          priceFactor={priceFactor}
+        />
         <PostsRow post={post} />
       </div>
     </div>
@@ -150,6 +156,7 @@ const Post = ({ post }) => {
 
 function Posts({ posts }) {
   const [displayedPosts, setDisplayedPosts] = useState([]);
+  const [bitcloutFactor, setBitcloutFactor] = useState(0);
 
   const removeDuplicatePosts = (datas) => {
     return datas.filter((item, index, arr) => {
@@ -165,12 +172,22 @@ function Posts({ posts }) {
     setDisplayedPosts(newPosts);
   }, [posts]);
 
+  useEffect(() => {
+    (async () => {
+      const res = await get_bitclout_price();
+      console.log(res);
+      setBitcloutFactor(res);
+    })();
+  }, [posts]);
+
   return (
     <div className="Posts">
       {posts.length > 0 ? (
         displayedPosts
           ?.sort((a, b) => b.TimestampNanos - a.TimestampNanos)
-          .map((post, idx) => <Post key={idx} post={post} />)
+          .map((post, idx) => (
+            <Post key={idx} post={post} priceFactor={bitcloutFactor} />
+          ))
       ) : (
         <div className="Posts__emptyMessage">
           <p className="Posts__emptySmiley"> :&#10090; </p>
