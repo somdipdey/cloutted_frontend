@@ -41,7 +41,7 @@ function TrendingHashtagsCardBody() {
   }, []);
 
   return (
-    <Card headerText="Top Hashtags">
+    <Card headerText="Top #CloutTags">
       <div className="trendinghashtags">
         {trendingHashtags.map(({ hashtag }, idx) => (
           <Tile title={hashtag} key={idx} />
