@@ -175,7 +175,6 @@ function Posts({ posts }) {
   useEffect(() => {
     (async () => {
       const res = await get_bitclout_price();
-      console.log(res);
       setBitcloutFactor(res);
     })();
   }, [posts]);
