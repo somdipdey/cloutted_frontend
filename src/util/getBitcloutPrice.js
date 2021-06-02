@@ -14,7 +14,7 @@ export default async function get_bitclout_price() {
     .satoshiRate;
 
   const bitclout_price =
-    (satoshi_per_bit_clout_exchange_rate * latest_bitcoin_price) / (10 ^ 8);
-
+    (satoshi_per_bit_clout_exchange_rate * latest_bitcoin_price) /
+    Math.pow(10, 8);
   return bitclout_price;
 }

@@ -55,7 +55,7 @@ function Header() {
         What is cloutted?
       </div>
       <div className="Header__action" onClick={() => history.push("/analyse")}>
-        Analyse #CloutTags
+        Analyze #CloutTags
       </div>
       <ProfileDropdown user={user} />
     </div>

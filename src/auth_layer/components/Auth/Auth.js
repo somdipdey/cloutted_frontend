@@ -53,10 +53,11 @@ function Auth() {
               }}
             >
               <p>
-                Sorry, You are no allowed to access this closed beta. Consider
-                signing up.
+                We’re excited to get more people onto Cloutted. Unfortunately we
+                are still in private beta for our Coin Holders. Join the
+                waitlist and stay tuned for more updates!
               </p>
-              <a href="https://www.cloutted.com/" target="_blank">
+              <a href="https://cloutted.wixsite.com/my-site" target="_blank">
                 <Button
                   spaceTop
                   buttonText="Sign Up!"

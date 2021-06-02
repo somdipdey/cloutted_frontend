@@ -87,7 +87,7 @@ function AnalyseInput({ onSubmit }) {
           )}
         />
       </div>
-      <Button buttonText="Analyse" onClick={() => onSubmit?.(inputText)} />
+      <Button buttonText="Analyze" onClick={() => onSubmit?.(inputText)} />
     </div>
   );
 }
