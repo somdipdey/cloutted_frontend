@@ -219,9 +219,10 @@ const TopCommunitiesCardBody = () => (
   </div>
 );
 
-const PostView = ({ heading, posts, isLoading }) => (
+const PostView = ({ heading, posts, isLoading, children }) => (
   <>
     <h1 className="HashTag__pageLabel">{heading}</h1>
+    {children}
     <br />
     {isLoading ? <Loader /> : <Posts posts={posts} />}
   </>
@@ -235,7 +236,7 @@ const tabList = [
 
 function Trending() {
   const [activeTab, setActiveTab] = useState(0);
-  const [offset, setOffset] = useState(activeTab);
+  const [offset, setOffset] = useState(tabList[activeTab].value);
   const [posts, setPosts] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -267,8 +268,9 @@ function Trending() {
       </div>
 
       <div className="Trending__middleArea">
-        <Tabs tabNo={activeTab} setTab={onSetTab} tabTitles={tabList} />
-        <PostView heading={"Trending"} posts={posts} isLoading={isLoading} />
+        <PostView heading={"Trending"} posts={posts} isLoading={isLoading}>
+          <Tabs tabNo={activeTab} setTab={onSetTab} tabTitles={tabList} />
+        </PostView>
       </div>
 
       <div className="Trending__rightSidebar">
