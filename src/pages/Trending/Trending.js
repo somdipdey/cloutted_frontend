@@ -228,7 +228,7 @@ const PostView = ({ heading, posts, isLoading }) => (
 );
 
 const tabList = [
-  { title: "last 6 hours", value: 6 },
+  { title: "last 12 hours", value: 12 },
   { title: "last 24 hours", value: 24 },
   { title: "last week", value: 168 }, // hrs in a week
 ];
