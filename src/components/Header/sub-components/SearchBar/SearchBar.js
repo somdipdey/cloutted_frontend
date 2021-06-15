@@ -101,7 +101,7 @@ function SearchBar() {
             {...params}
             variant="outlined"
             // placeholder="Discover Communities (i.e. #cloutboys)"
-            placeholder="Discover Hashtags (i.e. #cloutboys)"
+            placeholder="Discover CloutTags (i.e. #cloutboys)"
             InputProps={{
               ...params.InputProps,
               endAdornment: (
