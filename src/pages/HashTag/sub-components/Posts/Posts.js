@@ -13,6 +13,7 @@ import ReactTooltip from "react-tooltip";
 
 import Hashtags from "react-highlight-hashtags";
 import get_bitclout_price from "../../../../util/getBitcloutPrice";
+import { getProfilePic } from "../../../../util/getProfilePic";
 
 // import Parser from "html-react-parser";
 
@@ -34,7 +35,7 @@ const UserInfoRow = ({ user, postCategory, priceFactor }) => (
     >
       <div className="Posts__userInfo">
         <div className="Posts__userAvatar">
-          <img src={user?.ProfilePic || "/emptyPic.png"} alt="" />
+          <img src={getProfilePic(user?.PublicKeyBase58Check)} alt="" />
         </div>
         <div className="Posts__userName">
           <p>{user?.Username || "Anonymous"}</p>

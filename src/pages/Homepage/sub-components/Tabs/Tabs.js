@@ -18,15 +18,16 @@ const tabList = [
   { title: "Cloutted Communities" },
 ];
 
-function Tabs({ tabNo, setTab }) {
+function Tabs({ tabNo, setTab, tabTitles }) {
+  const tabs = tabTitles ?? tabList;
   return (
     <div className="Tabs">
-      {tabList.map(({ title }, idx) => (
+      {tabs.map(({ title }, idx) => (
         <Tab name={title} isActive={tabNo === idx} setTab={setTab} idx={idx} />
       ))}
-      <div className="Tabs__more" onClick={() => setTab(4)}>
+      {/* <div className="Tabs__more" onClick={() => setTab(4)}>
         <MoreVertRoundedIcon color={tabNo === 3 ? `#ddd` : `#333`} />
-      </div>
+      </div> */}
     </div>
   );
 }

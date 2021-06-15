@@ -11,6 +11,7 @@ import { useStateValue } from "./data_layer/store";
 import Analyse from "./pages/Analyse/Analyse";
 import { useEffect, useState } from "react";
 import WhatCloutted from "./pages/WhatCloutted";
+import Trending from "./pages/Trending/Trending";
 
 const ClouttedApp = () => (
   <>
@@ -39,6 +40,7 @@ const ClouttedApp = () => (
         render={(props) => <HashTag key={props.match.params} {...props} />}
       />
       <Route exact path="/analyse" render={(props) => <Analyse {...props} />} />
+      <Route exact path="/trending" component={Trending}></Route>
       <Route exact path="/mylists">
         <Screenshots
           imgSrc={"/MyLists.JPG"}

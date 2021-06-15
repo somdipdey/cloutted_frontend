@@ -5,6 +5,7 @@ import ExpandMoreRoundedIcon from "@material-ui/icons/ExpandMoreRounded";
 import { Menu, MenuItem } from "@material-ui/core";
 import { useStateValue } from "../../../../data_layer/store";
 import { Skeleton } from "@material-ui/lab";
+import { getProfilePic } from "../../../../util/getProfilePic";
 
 function ProfileDropdown({ user }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -33,8 +34,8 @@ function ProfileDropdown({ user }) {
         onClick={handleClick}
       >
         <div className="ProfileDropdown__avatar">
-          {user?.ProfilePic ? (
-            <img alt="" src={user?.ProfilePic} />
+          {user ? (
+            <img alt="" src={getProfilePic(user?.PublicKeyBase58Check)} />
           ) : (
             <Skeleton
               variant="rect"
