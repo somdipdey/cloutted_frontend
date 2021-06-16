@@ -13,6 +13,7 @@ import Button from "../../components/Button/Button";
 import ReactTooltip from "react-tooltip";
 import { useHistory } from "react-router";
 import TrendingHashtagsCardBody from "../../components/TrendingHashtagsCardBody/TrendingHashtagsCardBody";
+import TrendingsCardBody from "../../components/TrendingsBody/TrendingsBody";
 import Posts from "../HashTag/sub-components/Posts/Posts";
 import axios from "axios";
 import { endPoints } from "../../config/api";
@@ -352,7 +353,7 @@ function Analyse() {
 
       <div className="Analyse__rightSidebar">
         <TrendingHashtagsCardBody />
-        <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
+        <TrendingsCardBody />
       </div>
     </div>
   );

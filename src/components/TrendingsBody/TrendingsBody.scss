@@ -1,0 +1,19 @@
+.Trending__select {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  border-radius: 15px;
+  background-color: transparent;
+  font-size: 1.1rem;
+  border: 1px solid black;
+}
+
+option {
+  font-size: 1.1rem;
+
+  padding: 1rem;
+  background-color: transparent;
+  text-indent: 5px;
+  min-height: 1.5em !important;
+}

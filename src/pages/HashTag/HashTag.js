@@ -18,6 +18,7 @@ import { endPoints } from "../../config/api";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import Posts from "./sub-components/Posts/Posts";
+import TrendingsCardBody from "../../components/TrendingsBody/TrendingsBody";
 // import CircularProgress from "@material-ui/core/CircularProgress";
 
 // icons
@@ -295,7 +296,7 @@ function HashTag({ match }) {
 
       <div className="HashTag__rightSidebar">
         <TrendingHashtagsCardBody />
-        <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
+        <TrendingsCardBody />
       </div>
     </div>
   );

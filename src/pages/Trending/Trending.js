@@ -25,6 +25,7 @@ import Loader from "../../components/Loader/Loader";
 
 import "./Trending.scss";
 import Tabs from "../Homepage/sub-components/Tabs/Tabs";
+import TrendingsCardBody from "../../components/TrendingsBody/TrendingsBody";
 
 let history;
 
@@ -275,7 +276,7 @@ function Trending() {
 
       <div className="Trending__rightSidebar">
         <TrendingHashtagsCardBody />
-        <Card headerText="Top Communities" body={TopCommunitiesCardBody} />
+        <TrendingsCardBody />
       </div>
     </div>
   );
