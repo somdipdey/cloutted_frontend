@@ -65,7 +65,7 @@ function TrendingsCardBody() {
   const [trending, setTrending] = useState(Array(NUM_TO_FETCH).fill(0));
 
   return (
-    <Card headerText="Trending Hashtags">
+    <Card headerText="Trending #CloutTags">
       {/* <Tabs tabNo={activeTab} setTab={onSetTab} tabTitles={tabList} /> */}
       <Select
         className="Trending__select"
