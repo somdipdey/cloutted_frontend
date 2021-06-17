@@ -249,8 +249,8 @@ function Homepage() {
       </div>
 
       <div className="Homepage__rightSidebar">
-        <TrendingHashtagsCardBody />
         <TrendingsCardBody />
+        <TrendingHashtagsCardBody />
       </div>
     </div>
   );

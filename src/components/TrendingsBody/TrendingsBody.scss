@@ -9,6 +9,15 @@
   border: 1px solid black;
 }
 
+.MuiInput-underline::before,
+.MuiInput-underline::after {
+  display: none;
+}
+
+.MuiSelect-select:focus {
+  background-color: transparent !important;
+}
+
 option {
   font-size: 1.1rem;
 

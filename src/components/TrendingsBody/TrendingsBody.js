@@ -7,9 +7,11 @@ import { endPoints } from "../../config/api";
 import Tabs from "../../pages/Homepage/sub-components/Tabs/Tabs";
 import Button from "../Button/Button";
 import Card from "../Card/Card";
+import { MenuItem, Select } from "@material-ui/core";
 
 import "./TrendingsBody.scss";
 
+const NUM_TO_FETCH = 5;
 let history;
 
 const Tile = ({ title }) => (
@@ -49,9 +51,9 @@ function TrendingsCardBody() {
   };
 
   useEffect(() => {
-    setTrending([]);
+    setTrending(Array(NUM_TO_FETCH).fill(0));
     axios
-      .get(endPoints.trending, { params: { resLimit: 5, offset } })
+      .get(endPoints.trending, { params: { resLimit: NUM_TO_FETCH, offset } })
       .then((res) => {
         const { data } = res;
         const posts = data.posts.map(({ hashtag }) => hashtag);
@@ -60,25 +62,29 @@ function TrendingsCardBody() {
       .catch((err) => console.error(err?.response?.data?.message));
   }, [offset]);
 
-  const [trending, setTrending] = useState(Array(5).fill(0));
+  const [trending, setTrending] = useState(Array(NUM_TO_FETCH).fill(0));
 
   return (
     <Card headerText="Trending Hashtags">
       {/* <Tabs tabNo={activeTab} setTab={onSetTab} tabTitles={tabList} /> */}
-      <select
+      <Select
         className="Trending__select"
         onChange={(e) => setOffset(e.target.value)}
         value={offset}
       >
         {tabList.map((el) => (
-          <option value={el.value}>{el.title}</option>
+          <MenuItem value={el.value}>{el.title}</MenuItem>
         ))}
-      </select>
+      </Select>
 
       {trending.map((hashtag, idx) => (
         <Tile title={hashtag} key={idx} />
       ))}
-      <Button buttonLink="/trending" buttonText="View Trending" spaceTop />
+      <Button
+        onClick={() => history?.push("/trending")}
+        buttonText="View Trending"
+        spaceTop
+      />
     </Card>
   );
 }

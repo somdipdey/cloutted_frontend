@@ -275,8 +275,8 @@ function Trending() {
       </div>
 
       <div className="Trending__rightSidebar">
-        <TrendingHashtagsCardBody />
         <TrendingsCardBody />
+        <TrendingHashtagsCardBody />
       </div>
     </div>
   );

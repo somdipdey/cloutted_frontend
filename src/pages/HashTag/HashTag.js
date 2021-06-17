@@ -295,8 +295,8 @@ function HashTag({ match }) {
       </div>
 
       <div className="HashTag__rightSidebar">
-        <TrendingHashtagsCardBody />
         <TrendingsCardBody />
+        <TrendingHashtagsCardBody />
       </div>
     </div>
   );

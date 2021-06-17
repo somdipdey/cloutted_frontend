@@ -352,8 +352,8 @@ function Analyse() {
       </div>
 
       <div className="Analyse__rightSidebar">
-        <TrendingHashtagsCardBody />
         <TrendingsCardBody />
+        <TrendingHashtagsCardBody />
       </div>
     </div>
   );
