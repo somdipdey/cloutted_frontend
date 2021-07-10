@@ -4,17 +4,22 @@
 
   &__leftSidebar,
   &__rightSidebar {
-    width: 20%;
+    width: 25%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
   }
+  &__leftSidebar {
+    opacity: 0.5;
+  }
 
   &__middleArea {
-    width: 60%;
+    width: 50%;
     padding: 1rem;
     display: flex;
     flex-direction: column;
+    height: 125vh;
+    overflow: auto;
   }
 }
 

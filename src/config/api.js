@@ -5,6 +5,7 @@ const API_BASE_URL = `${BASE_URL}/v1`;
 const endPoints = {
   hashtags: `${API_BASE_URL}/hashtags`,
   trending: `${API_BASE_URL}/trending`,
+  trendingFreq: `${API_BASE_URL}/trending/frequency`,
   hashtagtrends: `${API_BASE_URL}/hashtagtrends`,
   getUserProfile: `${API_BASE_URL}/users/get-user`,
   getPostsPerUser: `${API_BASE_URL}/posts/by-user`,

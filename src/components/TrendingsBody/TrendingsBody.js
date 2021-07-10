@@ -35,8 +35,8 @@ const Tile = ({ title }) => (
 );
 
 const tabList = [
-  { title: "last 12 hours", value: 12 },
-  { title: "last 24 hours", value: 24 },
+  { title: "12hr", value: 12 },
+  { title: "24hr", value: 24 },
   { title: "last week", value: 168 }, // hrs in a week
 ];
 
@@ -53,7 +53,9 @@ function TrendingsCardBody() {
   useEffect(() => {
     setTrending(Array(NUM_TO_FETCH).fill(0));
     axios
-      .get(endPoints.trending, { params: { resLimit: NUM_TO_FETCH, offset } })
+      .get(endPoints.trendingFreq, {
+        params: { resLimit: NUM_TO_FETCH, offset },
+      })
       .then((res) => {
         const { data } = res;
         const posts = data.posts.map(({ hashtag }) => hashtag);
@@ -66,8 +68,8 @@ function TrendingsCardBody() {
 
   return (
     <Card headerText="Trending #CloutTags">
-      {/* <Tabs tabNo={activeTab} setTab={onSetTab} tabTitles={tabList} /> */}
-      <Select
+      <Tabs tabNo={activeTab} setTab={onSetTab} tabTitles={tabList} />
+      {/* <Select
         className="Trending__select"
         onChange={(e) => setOffset(e.target.value)}
         value={offset}
@@ -75,7 +77,7 @@ function TrendingsCardBody() {
         {tabList.map((el) => (
           <MenuItem value={el.value}>{el.title}</MenuItem>
         ))}
-      </Select>
+      </Select> */}
 
       {trending.map((hashtag, idx) => (
         <Tile title={hashtag} key={idx} />

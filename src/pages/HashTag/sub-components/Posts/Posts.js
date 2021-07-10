@@ -14,6 +14,7 @@ import ReactTooltip from "react-tooltip";
 import Hashtags from "react-highlight-hashtags";
 import get_bitclout_price from "../../../../util/getBitcloutPrice";
 import { getProfilePic } from "../../../../util/getProfilePic";
+import Button from "../../../../components/Button/Button";
 
 // import Parser from "html-react-parser";
 
@@ -180,11 +181,16 @@ function Posts({ posts }) {
     })();
   }, [posts]);
 
+  const [slice, setSlice] = useState(20);
+
+  const increaseSlice = () => setSlice(slice + 20);
+
   return (
     <div className="Posts">
       {posts.length > 0 ? (
         displayedPosts
           ?.sort((a, b) => b.TimestampNanos - a.TimestampNanos)
+          .slice(0, slice)
           .map((post, idx) => (
             <Post key={idx} post={post} priceFactor={bitcloutFactor} />
           ))
@@ -193,6 +199,20 @@ function Posts({ posts }) {
           <p className="Posts__emptySmiley"> :&#10090; </p>
           <span>Hey, there is no posts yet</span>
         </div>
+      )}
+      {displayedPosts.length > 20 && (
+        <>
+          <br />
+          <br />
+          <br />
+          <Button buttonText="Load more" onClick={increaseSlice} />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+        </>
       )}
     </div>
   );

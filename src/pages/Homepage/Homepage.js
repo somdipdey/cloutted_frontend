@@ -169,7 +169,7 @@ const CommunitiesCardBody = () => (
     {Communities.map(({ title, onclickFunction }) => (
       <span
         data-id="communities-tip"
-        data-tip="Join your favourite communities and hashtags you'd like to follow."
+        data-tip="Join your favourite communities and hashtags you'd like to follow.  (Coming Soon)"
       >
         <Tile
           title={title}
@@ -189,7 +189,7 @@ const MyListsCardBody = () => (
     {MyLists.map(({ title, onclickFunction }) => (
       <span
         data-id="mylists-tip"
-        data-tip="Add specific users to custom lists and view their related posts."
+        data-tip="Add specific users to custom lists and view their related posts.  (Coming Soon)"
       >
         <Tile title={title} onclickFunction={onclickFunction} />
       </span>
@@ -239,8 +239,8 @@ function Homepage() {
   return (
     <div className="Homepage">
       <div className="Homepage__leftSidebar">
-        <Card body={CommunitiesCardBody} />
         <Card body={MyListsCardBody} />
+        <Card body={CommunitiesCardBody} />
       </div>
 
       <div className="Homepage__middleArea">

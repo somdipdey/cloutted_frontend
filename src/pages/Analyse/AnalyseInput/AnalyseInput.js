@@ -82,7 +82,7 @@ function AnalyseInput({ onSubmit }) {
               value={inputText}
               variant="outlined"
               style={{ width: "400px" }}
-              placeholder="Enter username"
+              placeholder="Enter a username to get started"
             />
           )}
         />

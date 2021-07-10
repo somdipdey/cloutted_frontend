@@ -29,7 +29,6 @@ function SearchBar() {
     } = response;
 
     if (hashtags.length === 0) {
-      console.log("setFalse");
       setIsLoadingFromApi(false);
     }
     setOptions(hashtags);
@@ -101,7 +100,7 @@ function SearchBar() {
             {...params}
             variant="outlined"
             // placeholder="Discover Communities (i.e. #cloutboys)"
-            placeholder="Discover CloutTags (i.e. #cloutboys)"
+            placeholder="#CloutTags (i.e. #bitcoin)"
             InputProps={{
               ...params.InputProps,
               endAdornment: (

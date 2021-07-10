@@ -45,9 +45,7 @@ function Header() {
         <img className="Header__logoImg" alt="" src={logo} />
       </div>
       <SearchBar />
-      <div className="Header__action" onClick={() => history.push("/")}>
-        Home
-      </div>
+
       <div className="Header__action" onClick={() => history.push("/trending")}>
         Trending
       </div>

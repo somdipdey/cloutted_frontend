@@ -175,7 +175,7 @@ const CommunitiesCardBody = () => (
     {Communities.map(({ title, onclickFunction }) => (
       <span
         data-id="communities-tip"
-        data-tip="Join your favourite communities and hashtags you'd like to follow."
+        data-tip="Join your favourite communities and hashtags you'd like to follow.  (Coming Soon)"
       >
         <Tile
           title={title}
@@ -195,7 +195,7 @@ const MyListsCardBody = () => (
     {MyLists.map(({ title, onclickFunction }) => (
       <span
         data-id="mylists-tip"
-        data-tip="Add specific users to custom lists and view their related posts."
+        data-tip="Add specific users to custom lists and view their related posts.  (Coming Soon)"
       >
         <Tile title={title} onclickFunction={onclickFunction} />
       </span>
@@ -230,8 +230,8 @@ const PostView = ({ heading, posts, isLoading, children }) => (
 );
 
 const tabList = [
-  { title: "last 12 hours", value: 12 },
-  { title: "last 24 hours", value: 24 },
+  { title: "12 hours", value: 12 },
+  { title: "24 hours", value: 24 },
   { title: "last week", value: 168 }, // hrs in a week
 ];
 
@@ -254,7 +254,6 @@ function Trending() {
       .then((res) => {
         const { data } = res;
         const posts = data.posts.map(({ post }) => post);
-        console.log(data);
         setIsLoading(false);
         setPosts(posts);
       })
@@ -264,8 +263,8 @@ function Trending() {
   return (
     <div className="Trending">
       <div className="Trending__leftSidebar">
-        <Card body={CommunitiesCardBody} />
         <Card body={MyListsCardBody} />
+        <Card body={CommunitiesCardBody} />
       </div>
 
       <div className="Trending__middleArea">

@@ -12,6 +12,7 @@ import Analyse from "./pages/Analyse/Analyse";
 import { useEffect, useState } from "react";
 import WhatCloutted from "./pages/WhatCloutted";
 import Trending from "./pages/Trending/Trending";
+import Cloutted from "./pages/Cloutted/Cloutted";
 
 const ClouttedApp = () => (
   <>
@@ -34,6 +35,7 @@ const ClouttedApp = () => (
         />
       </Route>
       <Route exact path="/hashtags" component={HashTag}></Route>
+      <Route exact path="/cloutted" component={Cloutted}></Route>
       <Route
         exact
         path="/hashtags/:hashtag"

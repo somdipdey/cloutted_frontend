@@ -33,7 +33,6 @@ export default function launchLoginWindow(setPublicKey, setRedirectUser) {
                   ({ PublicKeyBase58Check: p }) => p === user
                 );
 
-                console.log(isAuthorized);
                 if (isAuthorized) {
                   setPublicKey(user);
                   const userPayload = event.data.payload.users[user];

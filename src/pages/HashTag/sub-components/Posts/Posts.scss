@@ -4,6 +4,9 @@
   align-items: center;
   flex-direction: column;
   width: 100%;
+  background-color: #f8f8f8;
+  border-radius: 15px;
+  margin-top: 4rem;
 
   &__emptySmiley {
     transform: rotate(90deg);
@@ -22,20 +25,17 @@
   }
 
   &__post {
-    background-color: #f8f8f8;
-    border-radius: 15px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2rem;
-    margin: 2rem 0;
     position: relative;
-    box-shadow: 1px 1px 12px rgba(black, 0.1);
+    border-bottom: 1px solid #ddd;
 
     &:hover {
       cursor: pointer;
-      box-shadow: 1px 1px 12px rgba(black, 0.2);
+      background-color: #fbfbfb;
     }
   }
 
