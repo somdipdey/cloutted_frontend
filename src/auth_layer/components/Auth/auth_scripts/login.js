@@ -1,6 +1,10 @@
 import axios from "axios";
 
-export default function launchLoginWindow(setPublicKey, setRedirectUser) {
+export default function launchLoginWindow(
+  setPublicKey,
+  setRedirectUser,
+  setUser
+) {
   const h = 1000;
   const w = 800;
   const y = window.outerHeight / 2 + window.screenY - h / 2;
@@ -36,7 +40,10 @@ export default function launchLoginWindow(setPublicKey, setRedirectUser) {
                 if (isAuthorized) {
                   setPublicKey(user);
                   const userPayload = event.data.payload.users[user];
+                  console.log(userPayload);
+                  setUser(userPayload);
                   localStorage.setItem("pubKey", user);
+                  localStorage.setItem("userInfo", JSON.stringify(userPayload));
                 } else {
                   setRedirectUser(true);
                 }

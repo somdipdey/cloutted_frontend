@@ -1,0 +1,35 @@
+.Cloutted {
+  display: flex;
+  width: 100vw;
+  min-height: 90vh;
+
+  &__leftSidebar,
+  &__rightSidebar {
+    width: 25%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__leftSidebar {
+    opacity: 0.5;
+  }
+
+  &__middleArea {
+    width: 60%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 125vh;
+    overflow: auto;
+  }
+
+  &__pageLabel {
+    margin: 1rem 0;
+  }
+}
+
+.loading__all {
+  text-align: center;
+  margin-top: 30vh;
+}

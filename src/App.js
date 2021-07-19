@@ -62,11 +62,15 @@ function App() {
   useEffect(() => {
     if (!user) {
       const userKey = localStorage.getItem("pubKey");
+      const userInfo = localStorage.getItem("userInfo");
 
       if (userKey) {
         dispatch({
           type: "SET_USER",
-          payload: { PublicKeyBase58Check: userKey },
+          payload: {
+            PublicKeyBase58Check: userKey,
+            user: JSON.parse(userInfo),
+          },
         });
       }
     }

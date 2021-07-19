@@ -14,7 +14,7 @@ const reducer = (prevState, action) => {
     case "SET_USER":
       return {
         ...prevState,
-        user: action.payload,
+        user: { ...prevState.user, ...action.payload },
       };
 
     default:

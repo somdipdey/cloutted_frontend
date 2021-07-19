@@ -20,10 +20,10 @@ import Button from "../../../../components/Button/Button";
 
 const Liker = ({ likes, isLiked, likeClickedHandler }) => (
   <div className="Posts__postLikeWrap">
-    <div className="Posts__postLikes">{likes + (isLiked ? 1 : 0)}</div>
     <div className="Posts__postLikeBtn" onClick={likeClickedHandler}>
       {isLiked ? <FavoriteRoundedIcon /> : <FavoriteBorderRoundedIcon />}
     </div>
+    <div className="Posts__postLikes">{likes + (isLiked ? 1 : 0)}</div>
   </div>
 );
 
@@ -66,25 +66,43 @@ const UserInfoRow = ({ user, postCategory, priceFactor }) => (
   </div>
 );
 
-const PostsRow = ({ post }) => (
-  <>
-    <a
-      className="PostsRow__anchor"
-      href={`https://bitclout.com/posts/${post?.PostHashHex}`}
-      target="_blank"
-      rel="noreferrer"
-    >
+const sharePost = (postUrl) => {
+  navigator.clipboard.writeText(postUrl);
+  alert("Shareable link copied");
+};
+
+const PostsRow = ({ post, toggleComment }) => {
+  const [isLiked, setIsLiked] = useState(false);
+
+  const toggleLike = () => setIsLiked(!isLiked);
+
+  const postUrl = `https://bitclout.com/posts/${post?.PostHashHex}`;
+
+  return (
+    <>
       <div className="PostsRow">
-        {post?.ImageURLs?.length > 0 && (
-          <div className="PostsRow__image">
-            <img alt="" src={post?.ImageURLs[0]} />
+        <a
+          className="PostsRow__anchor"
+          href={postUrl}
+          target="_blank"
+          rel="noreferrer"
+        >
+          {post?.ImageURLs?.length > 0 && (
+            <div className="PostsRow__image">
+              <img alt="" src={post?.ImageURLs[0]} />
+            </div>
+          )}
+          <div className="PostsRow__body">
+            <Hashtags>{post?.Body}</Hashtags>
           </div>
-        )}
-        <div className="PostsRow__body">
-          <Hashtags>{post?.Body}</Hashtags>
-        </div>
-        <div className="PostsRow__actions" style={{ display: "none" }}>
-          <div className="PostsRow__actionsComment">
+        </a>
+        <div className="PostsRow__actions">
+          <Liker
+            likes={post?.LikeCount}
+            isLiked={isLiked}
+            likeClickedHandler={toggleLike}
+          />
+          <div className="PostsRow__actionsComment" onClick={toggleComment}>
             <ChatBubbleOutlineRoundedIcon />
             {post?.Comments}
           </div>
@@ -92,7 +110,10 @@ const PostsRow = ({ post }) => (
             <CachedOutlinedIcon />
             {post?.RecloutCount}
           </div>
-          <div className="PostsRow__actionsShare">
+          <div
+            className="PostsRow__actionsShare"
+            onClick={() => sharePost(postUrl)}
+          >
             <ShareOutlinedIcon />
           </div>
           <div className="PostsRow__actionsSave">
@@ -108,34 +129,46 @@ const PostsRow = ({ post }) => (
           <div className="PostsRow__postTime">{post?.postTime}</div>
         </div>
       </div>
-    </a>
-    <div className="PostsRow__timeStamp">
-      {new Date(post?.TimestampNanos / 1000000).toLocaleTimeString().toString()}
-      &nbsp;&nbsp;&nbsp;
-      {new Date(post?.TimestampNanos / 1000000).toLocaleDateString().toString()}
-    </div>
-  </>
-);
+      <div className="PostsRow__timeStamp">
+        {new Date(post?.TimestampNanos / 1000000)
+          .toLocaleTimeString()
+          .toString()}
+        &nbsp;&nbsp;&nbsp;
+        {new Date(post?.TimestampNanos / 1000000)
+          .toLocaleDateString()
+          .toString()}
+      </div>
+    </>
+  );
+};
+
+const postComment = () => {};
 
 const Post = ({ post, priceFactor }) => {
-  const [isLiked, setIsLiked] = useState(false);
+  const [showComment, setShowComment] = useState(false);
 
-  const toggleLike = () => setIsLiked(!isLiked);
+  const toggleComment = () => setShowComment(!showComment);
 
   return (
     <div className="Posts__post">
-      <Liker
-        likes={post?.LikeCount}
-        isLiked={isLiked}
-        likeClickedHandler={toggleLike}
-      />
       <div className="Posts__postMain">
         <UserInfoRow
           user={post?.owner}
           postCategory={null}
           priceFactor={priceFactor}
         />
-        <PostsRow post={post} />
+        <PostsRow post={post} toggleComment={toggleComment} />
+      </div>
+
+      <div
+        className="Posts__postComment"
+        style={{ display: showComment ? "flex" : "none" }}
+      >
+        <textarea
+          className="Posts__postCommentTextfield"
+          placeholder="Write a comment..."
+        />
+        <Button buttonText="Send" onClick={postComment} />
       </div>
     </div>
   );

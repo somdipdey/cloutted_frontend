@@ -8,12 +8,18 @@ import { Modal, Paper } from "@material-ui/core";
 function Auth() {
   const [{}, dispatch] = useStateValue();
   const [PublicKeyBase58Check, setPublicKeyBase58Check] = useState(null);
+  const [user, setUser] = useState(null);
 
   const [redirectUser, setRedirectUser] = useState(false);
 
   const setKey = (PublicKeyBase58Check) => {
     setPublicKeyBase58Check(PublicKeyBase58Check);
     dispatch({ type: "SET_USER", payload: { PublicKeyBase58Check } });
+  };
+
+  const setGlobalUser = (user) => {
+    setUser(user);
+    dispatch({ type: "SET_USER", payload: { user } });
   };
 
   return (
@@ -28,7 +34,9 @@ function Auth() {
       <Button
         spaceTop
         buttonText="Login with Bitclout"
-        onClick={() => launchLoginWindow(setKey, setRedirectUser)}
+        onClick={() =>
+          launchLoginWindow(setKey, setRedirectUser, setGlobalUser)
+        }
       />
 
       <Modal open={redirectUser} onClose={() => setRedirectUser(false)}>
