@@ -11,6 +11,8 @@ import CachedOutlinedIcon from "@material-ui/icons/CachedOutlined";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import ReactTooltip from "react-tooltip";
 
+import { signAndSubmitTransaction } from "../../../../util/signAndSubmitTransaction";
+
 import Hashtags from "react-highlight-hashtags";
 import get_bitclout_price from "../../../../util/getBitcloutPrice";
 import { getProfilePic } from "../../../../util/getProfilePic";
@@ -74,7 +76,11 @@ const sharePost = (postUrl) => {
 const PostsRow = ({ post, toggleComment }) => {
   const [isLiked, setIsLiked] = useState(false);
 
-  const toggleLike = () => setIsLiked(!isLiked);
+  const toggleLike = () => {
+    setIsLiked(!isLiked);
+    signAndSubmitTransaction(localStorage.getItem("pubKey"), post.PostHashHex);
+    console.log(localStorage.getItem("pubKey"), post.PostHashHex);
+  };
 
   const postUrl = `https://bitclout.com/posts/${post?.PostHashHex}`;
 
